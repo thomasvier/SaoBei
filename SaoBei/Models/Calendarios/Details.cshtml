@@ -1,0 +1,131 @@
+﻿@model SaoBei.Models.Calendario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Calendario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ano)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ano)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Janeiro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Janeiro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fevereiro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fevereiro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abril)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abril)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Junho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Junho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Julho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Julho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agosto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agosto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Setembro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Setembro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Outubro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Outubro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Novembro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Novembro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dezembro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dezembro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorMensalidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorMensalidade)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
