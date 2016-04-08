@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201604081330482_logs.Designer.cs">
       <DependentUpon>201604081330482_logs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604081952434_Tipointegrante.cs" />
+    <Compile Include="Migrations\201604081952434_Tipointegrante.Designer.cs">
+      <DependentUpon>201604081952434_Tipointegrante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
     <Compile Include="Models\Adversario.cs" />
@@ -387,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604081330482_logs.resx">
       <DependentUpon>201604081330482_logs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604081952434_Tipointegrante.resx">
+      <DependentUpon>201604081952434_Tipointegrante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Calendario.resx">
       <Generator>ResXFileCodeGenerator</Generator>

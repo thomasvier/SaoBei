@@ -11,6 +11,7 @@ namespace SaoBei.Models
         public Integrante()
         {
             Ativo = true;
+            TipoIntegrante = TipoIntegrante.Integrante;
         }
 
         [DisplayFormat(DataFormatString = "{0:000000}", ApplyFormatInEditMode = true)]
@@ -28,6 +29,9 @@ namespace SaoBei.Models
         [DataType(DataType.EmailAddress)]
         [Display(Name="E-mail")]
         public string Email { get; set; }
+
+        [Display(Name = "Tipo de integrante")]
+        public TipoIntegrante TipoIntegrante { get; set; }
 
         public bool Ativo { get; set; }
     }
