@@ -39,6 +39,14 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "E-mail" } })
+            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div class="checkbox">
         @Html.EditorFor(model => model.Ativo)
         @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label" })

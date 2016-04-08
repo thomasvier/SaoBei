@@ -52,7 +52,7 @@ namespace SaoBei.Controllers
             }
             catch (Exception exception)
             {
-                //LogBll.GravarErro(exception, User.Identity.Name);
+                LogBll.GravarErro(exception, User.Identity.Name);
                 return View("~/Views/Integrantes/Index.cshtml").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
             }
         }
@@ -60,41 +60,74 @@ namespace SaoBei.Controllers
         //GET
         public ActionResult Integrante(int? id)
         {
-            Integrante integrante;
-
-            if (id == null)
+            try
             {
-                integrante = new Integrante();
-            }
-            else
-            {
-                integrante = db.Integrantes.Find(id);                
-            }
+                Integrante integrante;
 
-            return View(integrante);
+                if (id == null)
+                {
+                    integrante = new Integrante();
+                }
+                else
+                {
+                    integrante = db.Integrantes.Find(id);
+                }
+
+                return View(integrante);
+            }
+            catch(Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Integrante([Bind(Include = "ID,Nome,Telefone,Email,Ativo")] Integrante integrante)
+        public ActionResult Integrante([Bind(Include = "ID,Nome,DataNascimento,Telefone,Email,Ativo")] Integrante integrante)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (integrante.ID > 0)
+                if (ModelState.IsValid)
                 {
-                    db.Entry(integrante).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
+                    IntegranteBll integranteBll = new IntegranteBll();
+
+                    if (integrante.ID > 0)
+                    {
+                        integranteBll.Atualizar(integrante);
+                        return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
+                    }
+                    else
+                    {
+                        integranteBll.Criar(integrante);
+                        return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
+                    }
                 }
-                else
-                {
-                    db.Integrantes.Add(integrante);
-                    db.SaveChanges();
-                    return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
-                }                
+
+                return View(integrante);
             }
-            return View(integrante);
-        }        
+            catch(Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
+        }
+
+        //GET
+        public ActionResult Detalhes(int? id)
+        {
+            try
+            {
+                Integrante integrante = IntegranteBll.RetornarIntegrante(id);
+
+                return View(integrante);
+            }
+            catch (Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

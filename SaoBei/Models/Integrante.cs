@@ -13,13 +13,17 @@ namespace SaoBei.Models
             Ativo = true;
         }
 
-        [DisplayFormat(DataFormatString="{0:000000}", ApplyFormatInEditMode=true)]
+        [DisplayFormat(DataFormatString = "{0:000000}", ApplyFormatInEditMode = true)]
         public int ID { get; set; }
 
         [Required]
         public string Nome { get; set; }
 
         public string Telefone { get; set; }
+
+        [Display(Name = "Data de nascimento")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DataNascimento { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Display(Name="E-mail")]

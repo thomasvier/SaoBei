@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using PagedList;
 using SaoBei.Models;
+using System.Data.Entity;
 
 namespace SaoBei.Negocio
 {
@@ -48,6 +49,31 @@ namespace SaoBei.Negocio
             int pageNumber = (page ?? 1);
 
             return integrantes.ToPagedList(pageNumber, pageSize);
+        }
+
+        public Integrante Criar(Integrante integrante)
+        {
+            db.Integrantes.Add(integrante);
+            db.SaveChanges();
+
+            return integrante;
+        }
+
+        public Integrante Atualizar(Integrante integrante)
+        {
+            db.Entry(integrante).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return integrante;
+        }
+
+        public static Integrante RetornarIntegrante(int? id)
+        {
+            Contexto db = new Contexto();
+
+            Integrante integrante = db.Integrantes.Where(i => i.ID == id).FirstOrDefault();
+
+            return integrante;
         }
     }
 }
