@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-md-12">
             @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "E-mail" } })
+            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "Data de nascimento" } })
             @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -72,4 +72,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Views/Integrantes/Integrante.js")
 }

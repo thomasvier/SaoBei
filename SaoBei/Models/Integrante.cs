@@ -12,6 +12,7 @@ namespace SaoBei.Models
         {
             Ativo = true;
             TipoIntegrante = TipoIntegrante.Integrante;
+            DataNascimento = DateTime.Today.AddYears(-18);
         }
 
         [DisplayFormat(DataFormatString = "{0:000000}", ApplyFormatInEditMode = true)]

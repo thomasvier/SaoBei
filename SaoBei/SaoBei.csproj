@@ -340,6 +340,7 @@
     <Content Include="Scripts\Views\Calendarios\Index.js" />
     <Content Include="Scripts\Views\Geral.js" />
     <Content Include="Scripts\Views\Integrantes\Index.js" />
+    <Content Include="Scripts\Views\Integrantes\Integrante.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
