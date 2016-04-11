@@ -73,6 +73,7 @@
                     <td>
                         <div class="pull-right">
                             <button type="button" class="btn btn-primary edit" title="Editar" onclick="location.href='@Url.Action("Integrante", "Integrantes", new { item.ID })'"><i class="glyphicon glyphicon-edit"></i></button>
+                            <button class="btn btn-primary details" title="Visualizar" data-id="@item.ID"><i class="glyphicon glyphicon-new-window"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -92,6 +93,7 @@
         }), PagedListRenderOptions.Classic)
     </div>
 </div>
+<div id="detalhes" class="modal"></div>
 
 @section Scripts {
     @Scripts.Render("~/Scripts/Views/Integrantes/Index.js")

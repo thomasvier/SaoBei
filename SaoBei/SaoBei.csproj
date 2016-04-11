@@ -363,6 +363,7 @@
     <Content Include="Views\Calendarios\Details.cshtml" />
     <Content Include="Views\Calendarios\Calendario.cshtml" />
     <Content Include="Views\Calendarios\Index.cshtml" />
+    <Content Include="Views\Integrantes\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
