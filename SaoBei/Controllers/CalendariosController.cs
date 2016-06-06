@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SaoBei.Models;
+using SaoBei.Negocio;
 
 namespace SaoBei.Controllers
 {
@@ -17,24 +18,43 @@ namespace SaoBei.Controllers
         // GET: Calendarios
         public ActionResult Index()
         {
-            return View(db.Calendarios.ToList());
-        }       
+            try
+            {
+                List<Calendario> calendarios = CalendarioBll.ListarCalendarios();
+
+                return View(calendarios);
+            }
+            catch (Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
+        }
 
         // GET
         public ActionResult Calendario(int? id)
         {
-            Calendario calendario;
- 
-            if (id == null)
+            try
             {
-                calendario = new Calendario();                
-            }
-            else
-            {
-                calendario = db.Calendarios.Find(id);                
-            }
+                Calendario calendario;
 
-            return View(calendario);
+
+                if (id == null)
+                {
+                    calendario = new Calendario();
+                }
+                else
+                {
+                    calendario = CalendarioBll.RetornarCalendario(id);
+                }
+
+                return View(calendario);
+            }
+            catch (Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
         }
 
         // POST: Calendarios/Edit/5
@@ -44,23 +64,48 @@ namespace SaoBei.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Calendario([Bind(Include = "ID,Ano,Janeiro,Fevereiro,Marco,Abril,Maio,Junho,Julho,Agosto,Setembro,Outubro,Novembro,Dezembro,ValorMensalidade,ValorAnuidade")] Calendario calendario)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (calendario.ID > 0)
+                if (ModelState.IsValid)
                 {
-                    db.Entry(calendario).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index").ComMensagem(Resources.Calendario.CalendarioAtualizado, TipoMensagem.Sucesso);
+                    CalendarioBll calendarioBll = new CalendarioBll();
+
+                    if (calendario.ID > 0)
+                    {
+                        calendarioBll.Atualizar(calendario);
+                        LogBll.GravarInformacao(string.Format(Resources.Calendario.AtualizacaoLog, calendario.ID), "", User.Identity.Name);
+                        return RedirectToAction("Index").ComMensagem(Resources.Calendario.CalendarioAtualizado, TipoMensagem.Sucesso);
+                    }
+                    else
+                    {
+                        calendarioBll.Criar(calendario);
+                        LogBll.GravarInformacao(string.Format(Resources.Calendario.CriacaoLog, calendario.ID), "", User.Identity.Name);
+                        return RedirectToAction("Index").ComMensagem(Resources.Calendario.CalendarioSalvo, TipoMensagem.Sucesso);
+                    }
                 }
-                else
-                {
-                    db.Calendarios.Add(calendario);
-                    db.SaveChanges();
-                    return RedirectToAction("Index").ComMensagem(Resources.Calendario.CalendarioSalvo, TipoMensagem.Sucesso);
-                }
+
+                return View(calendario);
             }
-            return View(calendario);
-        }        
+            catch (Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
+        }
+
+        public ActionResult Detalhes(int? id)
+        {
+            try
+            {
+                Calendario calendario = CalendarioBll.RetornarCalendario(id);
+                return View(calendario);
+            }
+            catch (Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {
