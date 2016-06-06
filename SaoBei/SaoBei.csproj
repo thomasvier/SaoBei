@@ -132,37 +132,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603071705145_InitialCreate.cs" />
-    <Compile Include="Migrations\201603071705145_InitialCreate.Designer.cs">
-      <DependentUpon>201603071705145_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603071718512_Initial.cs" />
-    <Compile Include="Migrations\201603071718512_Initial.Designer.cs">
-      <DependentUpon>201603071718512_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603071724367_Integrante.cs" />
-    <Compile Include="Migrations\201603071724367_Integrante.Designer.cs">
-      <DependentUpon>201603071724367_Integrante.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603071826578_Calendario.cs" />
-    <Compile Include="Migrations\201603071826578_Calendario.Designer.cs">
-      <DependentUpon>201603071826578_Calendario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604081227256_Aniversario.cs" />
-    <Compile Include="Migrations\201604081227256_Aniversario.Designer.cs">
-      <DependentUpon>201604081227256_Aniversario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604081330482_logs.cs" />
-    <Compile Include="Migrations\201604081330482_logs.Designer.cs">
-      <DependentUpon>201604081330482_logs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604081952434_Tipointegrante.cs" />
-    <Compile Include="Migrations\201604081952434_Tipointegrante.Designer.cs">
-      <DependentUpon>201604081952434_Tipointegrante.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606060043473_calendariodatavencimento.cs" />
-    <Compile Include="Migrations\201606060043473_calendariodatavencimento.Designer.cs">
-      <DependentUpon>201606060043473_calendariodatavencimento.cs</DependentUpon>
+    <Compile Include="Migrations\201606061620203_initial.cs" />
+    <Compile Include="Migrations\201606061620203_initial.Designer.cs">
+      <DependentUpon>201606061620203_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
@@ -381,29 +353,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603071705145_InitialCreate.resx">
-      <DependentUpon>201603071705145_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603071718512_Initial.resx">
-      <DependentUpon>201603071718512_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603071724367_Integrante.resx">
-      <DependentUpon>201603071724367_Integrante.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603071826578_Calendario.resx">
-      <DependentUpon>201603071826578_Calendario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604081227256_Aniversario.resx">
-      <DependentUpon>201604081227256_Aniversario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604081330482_logs.resx">
-      <DependentUpon>201604081330482_logs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604081952434_Tipointegrante.resx">
-      <DependentUpon>201604081952434_Tipointegrante.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606060043473_calendariodatavencimento.resx">
-      <DependentUpon>201606060043473_calendariodatavencimento.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606061620203_initial.resx">
+      <DependentUpon>201606061620203_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Calendario.resx">
       <Generator>ResXFileCodeGenerator</Generator>

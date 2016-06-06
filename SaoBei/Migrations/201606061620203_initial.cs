@@ -3,7 +3,7 @@ namespace SaoBei.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,7 @@ namespace SaoBei.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Ano = c.Int(nullable: false),
+                        DataVencimentoAnuidade = c.DateTime(nullable: false),
                         Janeiro = c.Boolean(nullable: false),
                         Fevereiro = c.Boolean(nullable: false),
                         Marco = c.Boolean(nullable: false),
@@ -26,6 +27,7 @@ namespace SaoBei.Migrations
                         Novembro = c.Boolean(nullable: false),
                         Dezembro = c.Boolean(nullable: false),
                         ValorMensalidade = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ValorAnuidade = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -34,8 +36,25 @@ namespace SaoBei.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Nome = c.String(),
+                        Nome = c.String(nullable: false),
+                        Telefone = c.String(),
+                        DataNascimento = c.DateTime(nullable: false),
+                        Email = c.String(),
+                        TipoIntegrante = c.Int(nullable: false),
                         Ativo = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.Logs",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        TipoLog = c.Int(nullable: false),
+                        Mensagem = c.String(nullable: false),
+                        Observacao = c.String(),
+                        Usuario = c.String(),
+                        DataHora = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -43,6 +62,7 @@ namespace SaoBei.Migrations
         
         public override void Down()
         {
+            DropTable("dbo.Logs");
             DropTable("dbo.Integrantes");
             DropTable("dbo.Calendarios");
         }
