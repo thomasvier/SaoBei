@@ -133,6 +133,11 @@
             @Html.EditorFor(model => model.ValorAnuidade, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ValorAnuidade, "", new { @class = "text-danger" })
         </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.DataVencimentoAnuidade, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.DataVencimentoAnuidade, new { htmlAttributes = new { @class = "form-control datepicker" } })
+            @Html.ValidationMessageFor(model => model.DataVencimentoAnuidade, "", new { @class = "text-danger" })
+        </div>
     </div>
     <br />
     <div class="row">

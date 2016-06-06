@@ -28,6 +28,9 @@ namespace SaoBei.Models
         [Required]
         public int Ano { get; set; }
 
+        [Display(Name = "Data de vencimento da anuidade")]
+        public DateTime DataVencimentoAnuidade { get; set; }
+
         public bool Janeiro { get; set; }
 
         public bool Fevereiro { get; set; }

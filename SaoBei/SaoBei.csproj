@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201604081952434_Tipointegrante.Designer.cs">
       <DependentUpon>201604081952434_Tipointegrante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606060043473_calendariodatavencimento.cs" />
+    <Compile Include="Migrations\201606060043473_calendariodatavencimento.Designer.cs">
+      <DependentUpon>201606060043473_calendariodatavencimento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
     <Compile Include="Models\Adversario.cs" />
@@ -172,6 +176,7 @@
     <Compile Include="Models\TipoIntegrante.cs" />
     <Compile Include="Models\TipoLog.cs" />
     <Compile Include="Models\TipoMensagem.cs" />
+    <Compile Include="Negocio\CalendarioBll.cs" />
     <Compile Include="Negocio\IntegranteBll.cs" />
     <Compile Include="Negocio\LogBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -396,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604081952434_Tipointegrante.resx">
       <DependentUpon>201604081952434_Tipointegrante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606060043473_calendariodatavencimento.resx">
+      <DependentUpon>201606060043473_calendariodatavencimento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Calendario.resx">
       <Generator>ResXFileCodeGenerator</Generator>
