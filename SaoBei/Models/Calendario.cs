@@ -11,6 +11,7 @@ namespace SaoBei.Models
         public Calendario()
         {
             Ano = DateTime.Now.Year;
+            DataVencimentoAnuidade = DateTime.Now.Date;
             Marco = true;
             Abril = true;
             Maio = true;
@@ -29,6 +30,7 @@ namespace SaoBei.Models
         public int Ano { get; set; }
 
         [Display(Name = "Data de vencimento da anuidade")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataVencimentoAnuidade { get; set; }
 
         public bool Janeiro { get; set; }
