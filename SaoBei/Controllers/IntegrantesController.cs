@@ -11,6 +11,7 @@ using SaoBei.Negocio;
 
 namespace SaoBei.Controllers
 {
+    [Authorize(Roles = "Diretoria")]
     public class IntegrantesController : Controller
     {
         private Contexto db = new Contexto();
@@ -84,7 +85,7 @@ namespace SaoBei.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Integrante([Bind(Include = "ID,Nome,DataNascimento,Telefone,Email,Ativo")] Integrante integrante)
+        public ActionResult Integrante([Bind(Include = "ID,Nome,DataNascimento,Telefone,Email,Ativo,Senha")] Integrante integrante)
         {
             try
             {

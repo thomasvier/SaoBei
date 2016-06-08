@@ -17,6 +17,55 @@ namespace SaoBei.Negocio
             db = new Contexto();
         }
 
+        public Integrante LogOn(string email, string senha)
+        {
+            Integrante integrante = (from i in db.Integrantes
+                               where i.Email.Equals(email) && i.Senha.Equals(senha) && i.Ativo.Equals(true)
+                               select i).FirstOrDefault();
+
+
+            return integrante;
+        }
+
+        /// <summary>
+        /// Verifica se já existe um usuário com o login passado por parâmetro
+        /// </summary>
+        /// <param name="integrante"></param>
+        /// <param name="tipoOperacao"></param>
+        /// <returns></returns>
+        public static bool VericarEmailExistente(Integrante integrante, TipoOperacao tipoOperacao)
+        {
+            Contexto db = new Contexto();
+
+            List<Integrante> integrantes = (from c in db.Integrantes
+                                      where c.Email.Equals(integrante.Email)
+                                      select c).ToList();
+
+            if (!string.IsNullOrEmpty(integrante.Email))
+            {
+                if (tipoOperacao.Equals(TipoOperacao.Create))
+                {
+                    if (integrantes.Count > 0)
+                        return true;
+                }
+                else if (tipoOperacao.Equals(TipoOperacao.Update))
+                {
+                    if (integrantes.Count > 0)
+                    {
+                        foreach (Integrante user in integrantes)
+                        {
+                            if (user.Email.Equals(integrante.Email) && user.ID != integrante.ID)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public IPagedList<Integrante> BuscarIntegrantes(int? page, string filtro,
                                             string sortOrder, string ativoFiltro, int pageSize)
         {
@@ -74,6 +123,24 @@ namespace SaoBei.Negocio
             Integrante integrante = db.Integrantes.Where(i => i.ID == id).FirstOrDefault();
 
             return integrante;
+        }
+
+        public static IQueryable<Integrante> RetornarIntegrantesAtivos()
+        {
+            Contexto db = new Contexto();
+
+            IQueryable <Integrante> integrantes = db.Integrantes.Where(i => i.Ativo == true);
+
+            return integrantes;
+        }
+
+        public static TipoIntegrante RetornarTipoIntegrante(string email)
+        {
+            Contexto db = new Contexto();
+
+            TipoIntegrante tipoIntegrante = db.Integrantes.Where(i => i.Email == email).FirstOrDefault().TipoIntegrante;
+
+            return tipoIntegrante;
         }
     }
 }

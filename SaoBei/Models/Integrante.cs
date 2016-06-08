@@ -34,6 +34,10 @@ namespace SaoBei.Models
         [Display(Name = "Tipo de integrante")]
         public TipoIntegrante TipoIntegrante { get; set; }
 
+        [DataType(DataType.Password)]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "O campo Senha deve ter entre 6 a 20 caracterers")]
+        public string Senha { get; set; }
+
         public bool Ativo { get; set; }
     }
 }

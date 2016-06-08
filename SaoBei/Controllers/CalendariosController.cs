@@ -11,6 +11,7 @@ using SaoBei.Negocio;
 
 namespace SaoBei.Controllers
 {
+    [Authorize(Roles="Diretoria")]
     public class CalendariosController : Controller
     {
         private Contexto db = new Contexto();
@@ -68,11 +69,30 @@ namespace SaoBei.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    CalendarioBll calendarioBll = new CalendarioBll();
+                    CalendarioBll calendarioBll = new CalendarioBll();                    
 
                     if (calendario.ID > 0)
                     {
                         calendarioBll.Atualizar(calendario);
+
+                        IQueryable<Integrante> integrantes = IntegranteBll.RetornarIntegrantesAtivos();
+
+                        foreach (Integrante integrante in integrantes)
+                        {
+                            MensalidadesBll mensalidadesBll = new MensalidadesBll();
+                            
+                            //Verifica se o integrante já possui mensalidades para este calendário
+                            if (!mensalidadesBll.VerificarExisteMensalidadesCalendarioIntegrante(integrante.ID, calendario.ID))
+                            {
+                                Mensalidades mensalidades = new Mensalidades();
+
+                                mensalidades.IntegrandeID = integrante.ID;
+                                mensalidades.CalendarioID = calendario.ID;
+
+                                mensalidadesBll.Criar(mensalidades);
+                            }
+                        }
+
                         LogBll.GravarInformacao(string.Format(Resources.Calendario.AtualizacaoLog, calendario.ID), "", User.Identity.Name);
                         return RedirectToAction("Index").ComMensagem(Resources.Calendario.CalendarioAtualizado, TipoMensagem.Sucesso);
                     }

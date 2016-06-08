@@ -37,7 +37,15 @@
             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-mail" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
-    </div>    
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", @placeholder = "Senha" } })
+            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
