@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AtualizacaoLog" xml:space="preserve">
+    <value>Calendário {0} atualizado.</value>
+  </data>
+  <data name="CriacaoLog" xml:space="preserve">
+    <value>Calendário {0} criado.</value>
+  </data>
   <data name="IntegranteAtualizado" xml:space="preserve">
     <value>Integrante atualizado com sucesso.</value>
+  </data>
+  <data name="IntegranteExistente" xml:space="preserve">
+    <value>Já existe um integrante cadastrado com este e-mail.</value>
   </data>
   <data name="IntegranteSalvo" xml:space="preserve">
     <value>Integrante salvo com sucesso.</value>

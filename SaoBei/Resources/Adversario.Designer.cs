@@ -22,14 +22,14 @@ namespace SaoBei.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Calendario {
+    internal class Adversario {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Calendario() {
+        internal Adversario() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace SaoBei.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SaoBei.Resources.Calendario", typeof(Calendario).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SaoBei.Resources.Adversario", typeof(Adversario).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,25 @@ namespace SaoBei.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calendário {0} atualizado..
+        ///   Looks up a localized string similar to Adversário atualizado com sucesso..
+        /// </summary>
+        internal static string AdversarioAtualizado {
+            get {
+                return ResourceManager.GetString("AdversarioAtualizado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adversário salvo com sucesso..
+        /// </summary>
+        internal static string AdversarioSalvo {
+            get {
+                return ResourceManager.GetString("AdversarioSalvo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adversário {0} atualizado..
         /// </summary>
         internal static string AtualizacaoLog {
             get {
@@ -70,34 +88,7 @@ namespace SaoBei.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calendário atualizado com sucesso..
-        /// </summary>
-        internal static string CalendarioAtualizado {
-            get {
-                return ResourceManager.GetString("CalendarioAtualizado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Já existe um calendário cadastrado para o ano {0}..
-        /// </summary>
-        internal static string CalendarioExistente {
-            get {
-                return ResourceManager.GetString("CalendarioExistente", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calendário salvo com sucesso..
-        /// </summary>
-        internal static string CalendarioSalvo {
-            get {
-                return ResourceManager.GetString("CalendarioSalvo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calendário {0} criado..
+        ///   Looks up a localized string similar to Adversário {0} criado..
         /// </summary>
         internal static string CriacaoLog {
             get {

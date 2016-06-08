@@ -14,7 +14,7 @@ namespace SaoBei.Controllers
     [Authorize(Roles = "Diretoria")]
     public class IntegrantesController : Controller
     {
-        private Contexto db = new Contexto();
+        Contexto db = new Contexto();
 
         // GET: Integrantes
         public ActionResult Index(string sortOrder, string filtroAtual,
@@ -71,7 +71,7 @@ namespace SaoBei.Controllers
                 }
                 else
                 {
-                    integrante = db.Integrantes.Find(id);
+                    integrante = IntegranteBll.RetornarIntegrante(id);
                 }
 
                 return View(integrante);
@@ -95,13 +95,29 @@ namespace SaoBei.Controllers
 
                     if (integrante.ID > 0)
                     {
-                        integranteBll.Atualizar(integrante);
-                        return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
+                        if (IntegranteBll.VericarEmailExistente(integrante, TipoOperacao.Update))
+                        {
+                            return View().ComMensagem(Resources.Integrantes.IntegranteExistente, TipoMensagem.Aviso);
+                        }
+                        else
+                        {
+                            integranteBll.Atualizar(integrante);
+                            LogBll.GravarInformacao(string.Format(Resources.Integrantes.AtualizacaoLog, integrante.ID), "", User.Identity.Name);
+                            return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
+                        }
                     }
                     else
                     {
-                        integranteBll.Criar(integrante);
-                        return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
+                        if (IntegranteBll.VericarEmailExistente(integrante, TipoOperacao.Create))
+                        {
+                            return View().ComMensagem(Resources.Integrantes.IntegranteExistente, TipoMensagem.Aviso);
+                        }
+                        else
+                        { 
+                            integranteBll.Criar(integrante);
+                            LogBll.GravarInformacao(string.Format(Resources.Calendario.CriacaoLog, integrante.ID), "", User.Identity.Name);
+                            return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
+                        }
                     }
                 }
 

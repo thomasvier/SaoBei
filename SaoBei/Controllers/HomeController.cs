@@ -5,8 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace SaoBei.Controllers
-{
-    [Authorize(Roles = "Diretoria")]
+{    
     public class HomeController : Controller
     {
         public ActionResult Index()

@@ -117,19 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdversarioAtualizado" xml:space="preserve">
+    <value>Adversário atualizado com sucesso.</value>
+  </data>
+  <data name="AdversarioSalvo" xml:space="preserve">
+    <value>Adversário salvo com sucesso.</value>
+  </data>
   <data name="AtualizacaoLog" xml:space="preserve">
-    <value>Calendário {0} atualizado.</value>
-  </data>
-  <data name="CalendarioAtualizado" xml:space="preserve">
-    <value>Calendário atualizado com sucesso.</value>
-  </data>
-  <data name="CalendarioExistente" xml:space="preserve">
-    <value>Já existe um calendário cadastrado para o ano {0}.</value>
-  </data>
-  <data name="CalendarioSalvo" xml:space="preserve">
-    <value>Calendário salvo com sucesso.</value>
+    <value>Adversário {0} atualizado.</value>
   </data>
   <data name="CriacaoLog" xml:space="preserve">
-    <value>Calendário {0} criado.</value>
+    <value>Adversário {0} criado.</value>
   </data>
 </root>

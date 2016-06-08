@@ -28,7 +28,7 @@ namespace SaoBei.Negocio
         }
 
         /// <summary>
-        /// Verifica se já existe um usuário com o login passado por parâmetro
+        /// Verifica se já existe um usuário com o email passado por parâmetro
         /// </summary>
         /// <param name="integrante"></param>
         /// <param name="tipoOperacao"></param>
