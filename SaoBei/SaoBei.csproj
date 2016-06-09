@@ -131,28 +131,13 @@
     <Compile Include="Controllers\CalendariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntegrantesController.cs" />
+    <Compile Include="Controllers\JogosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606061620203_initial.cs" />
-    <Compile Include="Migrations\201606061620203_initial.Designer.cs">
-      <DependentUpon>201606061620203_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606081735395_senhaintegrante.cs" />
-    <Compile Include="Migrations\201606081735395_senhaintegrante.Designer.cs">
-      <DependentUpon>201606081735395_senhaintegrante.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606081751455_asdasd.cs" />
-    <Compile Include="Migrations\201606081751455_asdasd.Designer.cs">
-      <DependentUpon>201606081751455_asdasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606081907548_adversario.cs" />
-    <Compile Include="Migrations\201606081907548_adversario.Designer.cs">
-      <DependentUpon>201606081907548_adversario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606081933316_adver.cs" />
-    <Compile Include="Migrations\201606081933316_adver.Designer.cs">
-      <DependentUpon>201606081933316_adver.cs</DependentUpon>
+    <Compile Include="Migrations\201606091753056_Initial.cs" />
+    <Compile Include="Migrations\201606091753056_Initial.Designer.cs">
+      <DependentUpon>201606091753056_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
@@ -163,6 +148,7 @@
     <Compile Include="Models\Jogo.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Mensalidades.cs" />
+    <Compile Include="Models\SituacaoJogo.cs" />
     <Compile Include="Models\TempDataActionResult.cs" />
     <Compile Include="Models\TipoIntegrante.cs" />
     <Compile Include="Models\TipoLog.cs" />
@@ -171,6 +157,7 @@
     <Compile Include="Negocio\AdversarioBll.cs" />
     <Compile Include="Negocio\CalendarioBll.cs" />
     <Compile Include="Negocio\IntegranteBll.cs" />
+    <Compile Include="Negocio\JogoBll.cs" />
     <Compile Include="Negocio\LogBll.cs" />
     <Compile Include="Negocio\MensalidadesBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +180,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Integrantes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Jogos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jogos.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -377,6 +369,8 @@
     <Content Include="Views\Adversarios\Index.cshtml" />
     <Content Include="Views\Adversarios\Adversario.cshtml" />
     <Content Include="Views\Adversarios\Detalhes.cshtml" />
+    <Content Include="Views\Jogos\Index.cshtml" />
+    <Content Include="Views\Jogos\Jogo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -389,20 +383,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606061620203_initial.resx">
-      <DependentUpon>201606061620203_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606081735395_senhaintegrante.resx">
-      <DependentUpon>201606081735395_senhaintegrante.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606081751455_asdasd.resx">
-      <DependentUpon>201606081751455_asdasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606081907548_adversario.resx">
-      <DependentUpon>201606081907548_adversario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606081933316_adver.resx">
-      <DependentUpon>201606081933316_adver.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606091753056_Initial.resx">
+      <DependentUpon>201606091753056_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -419,6 +401,10 @@
     <EmbeddedResource Include="Resources\Integrantes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Integrantes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Jogos.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Jogos.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

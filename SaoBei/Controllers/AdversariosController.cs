@@ -11,6 +11,7 @@ using SaoBei.Negocio;
 
 namespace SaoBei.Controllers
 {
+    [Authorize(Roles = "Diretoria")]
     public class AdversariosController : Controller
     {
         // GET: Adversario
