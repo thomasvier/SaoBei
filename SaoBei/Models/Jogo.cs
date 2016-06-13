@@ -12,13 +12,19 @@ namespace SaoBei.Models
         public Jogo()
         {
             SituacaoJogo = SituacaoJogo.Confirmado;
-            Data = DateTime.Today;            
+            Data = DateTime.Today;                        
         }
 
         public int ID { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]        
         public DateTime Data { get; set; }
+
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Time)]
+        public DateTime Hora { get; set; }
 
         [Required]
         public string Local { get; set; }

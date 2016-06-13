@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using SaoBei.Models;
+﻿using SaoBei.Models;
 using SaoBei.Negocio;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SaoBei.Controllers
 {
@@ -54,13 +50,15 @@ namespace SaoBei.Controllers
 
                 List<Adversario> adversarios = AdversarioBll.RetornarAdversariosAtivos().ToList();
                 List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
-
+                                    
                 ViewBag.Adversarios = adversarios;
                 ViewBag.Calendarios = calendarios;
 
                 if (id == null)
                 {
                     jogo = new Jogo();
+                    Calendario calendario = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault();
+                    jogo.CalendarioID = calendario.ID;
                 }
                 else
                 {
@@ -78,7 +76,7 @@ namespace SaoBei.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Jogo([Bind(Include = "ID,Data,Local,AdversarioID,Adversario,CalendarioID,Calendario,SituacaoJogo,MotivoCancelamento")] Jogo jogo)
+        public ActionResult Jogo([Bind(Include = "ID,Data,Hora,Local,AdversarioID,Adversario,CalendarioID,Calendario,SituacaoJogo,MotivoCancelamento")] Jogo jogo)
         {
             try
             {

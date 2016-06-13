@@ -139,6 +139,10 @@
     <Compile Include="Migrations\201606091753056_Initial.Designer.cs">
       <DependentUpon>201606091753056_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606101236019_datahora.cs" />
+    <Compile Include="Migrations\201606101236019_datahora.Designer.cs">
+      <DependentUpon>201606101236019_datahora.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
     <Compile Include="Models\Adversario.cs" />
@@ -340,6 +344,7 @@
     <Content Include="Scripts\Views\Geral.js" />
     <Content Include="Scripts\Views\Integrantes\Index.js" />
     <Content Include="Scripts\Views\Integrantes\Integrante.js" />
+    <Content Include="Scripts\Views\Jogos\Index.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -385,6 +390,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606091753056_Initial.resx">
       <DependentUpon>201606091753056_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606101236019_datahora.resx">
+      <DependentUpon>201606101236019_datahora.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>
