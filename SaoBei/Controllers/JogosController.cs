@@ -12,7 +12,8 @@ namespace SaoBei.Controllers
     {
         // GET: Jogos
         public ActionResult Index(string sortOrder, string filtroAtual,
-                                    string filtro, int? page)
+                                    string filtro, int? page, string dataInicio, 
+                                    string dataFim, string dataInicioAtual, string dataFimAtual)
         {
             try
             {
@@ -28,7 +29,27 @@ namespace SaoBei.Controllers
                     filtro = filtroAtual;
                 }
 
+                if(dataInicio != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    dataInicio = dataInicioAtual;
+                }
+
+                if (dataFim != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    dataFim = dataFimAtual;
+                }
+
                 ViewBag.FiltroAtual = filtro;
+                ViewBag.DataInicio = dataInicio;
+                ViewBag.DataFim = dataFim;
 
                 JogoBll jogoBll = new JogoBll();
 

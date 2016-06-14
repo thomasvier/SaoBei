@@ -120,4 +120,7 @@
   <data name="ContateAdministrador" xml:space="preserve">
     <value>Ocorreu um erro. Tente novamente mais tarde.</value>
   </data>
+  <data name="EmailSenhaInvalidos" xml:space="preserve">
+    <value>Email ou senha inválidos.</value>
+  </data>
 </root>

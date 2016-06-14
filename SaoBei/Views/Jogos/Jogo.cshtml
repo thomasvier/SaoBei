@@ -39,14 +39,14 @@
 
         <div class="row">
             <div class="col-md-12">
-                @Html.LabelFor(model => model.AdversarioID, "AdversarioID", htmlAttributes: new { @class = "control-label" })
+                @Html.Label("Adversário")
                 @Html.DropDownListFor(model => model.AdversarioID, new SelectList(ViewBag.Adversarios, "ID", "Nome"), "Selecione", htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="row">            
             <div class="col-md-12">
-                @Html.LabelFor(model => model.CalendarioID, "CalendarioID", htmlAttributes: new { @class = "control-label" })
+                @Html.Label("Calendário")
                 @Html.DropDownListFor(model => model.CalendarioID, new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
