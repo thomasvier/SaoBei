@@ -243,6 +243,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagens\logo.jpg" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -376,6 +378,7 @@
     <Content Include="Views\Adversarios\Detalhes.cshtml" />
     <Content Include="Views\Jogos\Index.cshtml" />
     <Content Include="Views\Jogos\Jogo.cshtml" />
+    <Content Include="Views\Jogos\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

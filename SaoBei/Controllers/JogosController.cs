@@ -13,12 +13,13 @@ namespace SaoBei.Controllers
         // GET: Jogos
         public ActionResult Index(string sortOrder, string filtroAtual,
                                     string filtro, int? page, string dataInicio, 
-                                    string dataFim, string dataInicioAtual, string dataFimAtual)
+                                    string dataFim, string dataInicioAtual, string dataFimAtual, string situacao, string situacaoAtual)
         {
             try
             {
                 ViewBag.CurrentSort = sortOrder;
-                ViewBag.AdversarioSort = string.IsNullOrEmpty(sortOrder) ? "adversario_desc" : "";                
+                ViewBag.AdversarioSort = string.IsNullOrEmpty(sortOrder) ? "adversario_desc" : string.Empty;
+                ViewBag.DataSort = sortOrder == "Data" ? "data_desc" : "Data";         
 
                 if (filtro != null)
                 {
@@ -47,13 +48,23 @@ namespace SaoBei.Controllers
                     dataFim = dataFimAtual;
                 }
 
+                if(situacao != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    situacao = situacaoAtual;
+                }
+
                 ViewBag.FiltroAtual = filtro;
                 ViewBag.DataInicio = dataInicio;
                 ViewBag.DataFim = dataFim;
+                ViewBag.SituacaoAtual = situacao;
 
                 JogoBll jogoBll = new JogoBll();
 
-                return View("~/Views/Jogos/Index.cshtml", jogoBll.BuscarJogos(page, filtro, sortOrder, 10));
+                return View("~/Views/Jogos/Index.cshtml", jogoBll.BuscarJogos(page, filtro, dataInicio, dataFim, situacao, sortOrder, 10));
             }
             catch (Exception exception)
             {
@@ -127,6 +138,18 @@ namespace SaoBei.Controllers
                 LogBll.GravarErro(exception, User.Identity.Name);
                 return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
             }
+        }
+
+        public ActionResult Detalhes(int? id)
+        {
+            if(id.HasValue)
+            {
+                Jogo jogo = JogoBll.RetornarJogo(id);
+
+                return PartialView(jogo);
+            }
+
+            return View(new Jogo());
         }
     }
 }

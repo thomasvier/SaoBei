@@ -18,16 +18,48 @@ namespace SaoBei.Negocio
         }
 
         public IPagedList<Jogo> BuscarJogos(int? page, string filtro,
+                                            string dataInicio, string dataFim, string situacao,
                                             string sortOrder, int pageSize)
         {
             var jogos = from a in db.Jogos
                               select a;
             
-            
+            if(!string.IsNullOrEmpty(filtro))
+            {
+                jogos = jogos.Where(j => j.Adversario.Nome.Contains(filtro));
+            }
+
+            if(!string.IsNullOrEmpty(situacao))
+            {
+                SituacaoJogo situacaoJogo = (SituacaoJogo)int.Parse(situacao);
+
+                jogos = jogos.Where(j => j.SituacaoJogo == situacaoJogo);
+            }
+
+            if(!string.IsNullOrEmpty(dataInicio))
+            {
+                DateTime inicio = DateTime.Parse(dataInicio);
+
+                jogos = jogos.Where(j => j.Data >= inicio);
+            }
+
+            if(!string.IsNullOrEmpty(dataFim))
+            {
+                DateTime fim = DateTime.Parse(dataFim);
+
+                jogos = jogos.Where(j => j.Data <= fim);
+            }
+
             switch (sortOrder)
             {
                 case "adversario_desc":
                     jogos = jogos.OrderByDescending(j => j.Adversario.Nome);
+                    break;
+                case "data_desc":
+                    jogos = jogos.OrderByDescending(j => j.Data);
+                    break;
+                case "Data":
+                    jogos = jogos.OrderBy(j => j.Data);
                     break;
                 default:
                     jogos = jogos.OrderBy(j => j.Adversario.Nome);
@@ -80,5 +112,12 @@ namespace SaoBei.Negocio
 
             return jogo;
         }        
+
+        public static bool VerificarJogoMesmoDia(DateTime data)
+        {
+            Contexto db = new Contexto();
+
+            return db.Jogos.Where(j => j.Data.Date == data.Date).FirstOrDefault() != null;
+        }
     }
 }

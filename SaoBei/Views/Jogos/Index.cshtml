@@ -16,6 +16,7 @@
                 <div class="col-md-4">
                     <label for="situacao">Situação</label>
                     @Html.DropDownList("situacao", EnumHelper.GetSelectList(typeof(SituacaoJogo)), "Todos", new { @class = "form-control"})
+                    @Html.Hidden("hfsituacao", ViewBag.SituacaoAtual as string, htmlAttributes: new { @value = @ViewBag.SituacaoAtual })
                 </div>
                 <div class="col-md-2">
                     <label for="DataInicio">Início</label>
@@ -35,6 +36,8 @@
             <br />
             <div>
                 <button type="submit" id="btnPesquisar" class="btn btn-primary pull-left"><i class="glyphicon glyphicon-search"></i> Pesquisar</button>
+                <button type="reset" class="btn btn-danger" style="margin-left: 3px">Limpar</button>
+               
                 <button type="button" title="Novo" name="btnNovo" id="btnNovo" class="btn btn-success pull-right" onclick="location.href='@Url.Action("Jogo", "Jogos")'">
                     <i class="glyphicon glyphicon-plus"></i> Novo item
                 </button>
@@ -94,7 +97,8 @@
        sortOrder = ViewBag.CurrentSort,
        filtroAtual = ViewBag.FiltroAtual,
        dataInicioAtual = ViewBag.DataInicioAtual,
-       dataFimAtual = ViewBag.DataFimAtual
+       dataFimAtual = ViewBag.DataFimAtual,
+       situacaoAtual = ViewBag.SituacaoAtual
    }), PagedListRenderOptions.Classic)
     </div>
 </div>
