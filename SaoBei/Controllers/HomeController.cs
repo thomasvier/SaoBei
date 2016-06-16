@@ -18,9 +18,16 @@ namespace SaoBei.Controllers
         {
             Jogo jogo = JogoBll.RetornarProximoJogoConfirmado();
 
-            ViewBag.Adversario = jogo.Adversario.Nome;
-            ViewBag.Local = jogo.LocalJogo.Nome;
-            ViewBag.Data = string.Format("{0:dd/MM/yyyy HH:mm}", jogo.Data);
+            if (jogo != null)
+            {
+                ViewBag.Adversario = jogo.Adversario.Nome;
+                ViewBag.Local = jogo.LocalJogo.Nome;
+                ViewBag.Data = string.Format("{0:dd/MM/yyyy HH:mm}", jogo.Data);
+            }
+            else
+            {
+                ViewBag.ExisteJogo = "hidden";
+            }
 
             return View();
         }

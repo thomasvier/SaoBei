@@ -136,25 +136,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606091753056_Initial.cs" />
-    <Compile Include="Migrations\201606091753056_Initial.Designer.cs">
-      <DependentUpon>201606091753056_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606101236019_datahora.cs" />
-    <Compile Include="Migrations\201606101236019_datahora.Designer.cs">
-      <DependentUpon>201606101236019_datahora.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606152346030_localjogo.cs" />
-    <Compile Include="Migrations\201606152346030_localjogo.Designer.cs">
-      <DependentUpon>201606152346030_localjogo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606160051127_localjogojogos.cs" />
-    <Compile Include="Migrations\201606160051127_localjogojogos.Designer.cs">
-      <DependentUpon>201606160051127_localjogojogos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606160057116_localjogojogos1.cs" />
-    <Compile Include="Migrations\201606160057116_localjogojogos1.Designer.cs">
-      <DependentUpon>201606160057116_localjogojogos1.cs</DependentUpon>
+    <Compile Include="Migrations\201606161138548_initial.cs" />
+    <Compile Include="Migrations\201606161138548_initial.Designer.cs">
+      <DependentUpon>201606161138548_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
@@ -417,20 +401,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606091753056_Initial.resx">
-      <DependentUpon>201606091753056_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606101236019_datahora.resx">
-      <DependentUpon>201606101236019_datahora.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606152346030_localjogo.resx">
-      <DependentUpon>201606152346030_localjogo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606160051127_localjogojogos.resx">
-      <DependentUpon>201606160051127_localjogojogos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606160057116_localjogojogos1.resx">
-      <DependentUpon>201606160057116_localjogojogos1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606161138548_initial.resx">
+      <DependentUpon>201606161138548_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -3,7 +3,7 @@ namespace SaoBei.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -64,17 +64,31 @@ namespace SaoBei.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Data = c.DateTime(nullable: false),
-                        Local = c.String(nullable: false),
+                        Hora = c.DateTime(nullable: false),
                         AdversarioID = c.Int(nullable: false),
                         CalendarioID = c.Int(nullable: false),
                         SituacaoJogo = c.Int(nullable: false),
                         MotivoCancelamento = c.String(),
+                        LocalJogoID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Adversario", t => t.AdversarioID, cascadeDelete: true)
                 .ForeignKey("dbo.Calendario", t => t.CalendarioID, cascadeDelete: true)
+                .ForeignKey("dbo.LocalJogo", t => t.LocalJogoID, cascadeDelete: true)
                 .Index(t => t.AdversarioID)
-                .Index(t => t.CalendarioID);
+                .Index(t => t.CalendarioID)
+                .Index(t => t.LocalJogoID);
+            
+            CreateTable(
+                "dbo.LocalJogo",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Nome = c.String(maxLength: 300),
+                        ValorJogo = c.Decimal(precision: 18, scale: 2),
+                        Ativo = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.Log",
@@ -123,14 +137,17 @@ namespace SaoBei.Migrations
         {
             DropForeignKey("dbo.Mensalidades", "IntegrandeID", "dbo.Integrante");
             DropForeignKey("dbo.Mensalidades", "CalendarioID", "dbo.Calendario");
+            DropForeignKey("dbo.Jogo", "LocalJogoID", "dbo.LocalJogo");
             DropForeignKey("dbo.Jogo", "CalendarioID", "dbo.Calendario");
             DropForeignKey("dbo.Jogo", "AdversarioID", "dbo.Adversario");
             DropIndex("dbo.Mensalidades", new[] { "IntegrandeID" });
             DropIndex("dbo.Mensalidades", new[] { "CalendarioID" });
+            DropIndex("dbo.Jogo", new[] { "LocalJogoID" });
             DropIndex("dbo.Jogo", new[] { "CalendarioID" });
             DropIndex("dbo.Jogo", new[] { "AdversarioID" });
             DropTable("dbo.Mensalidades");
             DropTable("dbo.Log");
+            DropTable("dbo.LocalJogo");
             DropTable("dbo.Jogo");
             DropTable("dbo.Integrante");
             DropTable("dbo.Calendario");
