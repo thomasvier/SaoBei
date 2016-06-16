@@ -1,15 +1,16 @@
-﻿@model IPagedList<SaoBei.Models.Adversario>
+﻿@model IPagedList<SaoBei.Models.LocalJogo>
 @using PagedList;
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Adversarios";
+    ViewBag.Title = "Locais de jogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="panel panel-default">
-    <div class="panel-heading">Adversarios</div>
+    <div class="panel-heading">Locais de jogo</div>
     <div class="panel-body">
-        @using (Html.BeginForm("Index", "Adversarios", FormMethod.Get))
+        @using (Html.BeginForm("Index", "LocaisJogo", FormMethod.Get))
         {
             <div class="row">
                 <div class="col-md-4">
@@ -24,14 +25,14 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <label for="filtro">Nome</label>
-                    @Html.TextBox("filtro", ViewBag.FiltroAtual as String, htmlAttributes: new { @class = "form-control", @placeholder = "Nome do adversario" })
+                    <label for="filtro">Nome do local</label>
+                    @Html.TextBox("filtro", ViewBag.FiltroAtual as String, htmlAttributes: new { @class = "form-control", @placeholder = "Nome do local" })
                 </div>
             </div>
             <br />
             <div>
                 <button type="submit" id="btnPesquisar" class="btn btn-primary pull-left"><i class="glyphicon glyphicon-search"></i> Pesquisar</button>
-                <button type="button" title="Novo" name="btnNovo" id="btnNovo" class="btn btn-success pull-right" onclick="location.href='@Url.Action("Adversario", "Adversarios")'">
+                <button type="button" title="Novo" name="btnNovo" id="btnNovo" class="btn btn-success pull-right" onclick="location.href='@Url.Action("LocalJogo", "LocaisJogo")'">
                     <i class="glyphicon glyphicon-plus"></i> Novo item
                 </button>
             </div>
@@ -41,13 +42,10 @@
         <table class="table table-striped">
             <tr>
                 <th>
-                    @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.DescricaoSort, filtroAtual = @ViewBag.FiltroAtual })
+                    @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NomeSort, filtroAtual = @ViewBag.FiltroAtual })
                 </th>
                 <th>
-                    Nome do contato
-                </th>
-                <th>
-                    Telefone
+                    Valor Jogo
                 </th>
                 <th>
                     Ativo
@@ -62,17 +60,15 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NomeContato)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Telefone)
+                        @Html.DisplayFor(modelItem => item.ValorJogo)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Ativo)
                     </td>
                     <td>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-primary edit" title="Editar" onclick="location.href='@Url.Action("Adversario", "Adversarios", new { item.ID })'"><i class="glyphicon glyphicon-edit"></i></button>                            
+                            <button type="button" class="btn btn-primary edit" title="Editar" onclick="location.href='@Url.Action("LocalJogo", "LocaisJogo", new { item.ID })'"><i class="glyphicon glyphicon-edit"></i></button>
+                            <button class="btn btn-default details" title="Visualizar" data-id="@item.ID"><i class="glyphicon glyphicon-new-window"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -95,5 +91,5 @@
 <div id="detalhes" class="modal"></div>
 
 @section Scripts {
-    @Scripts.Render("~/Scripts/Views/Adversarios/Index.js")
+    @Scripts.Render("~/Scripts/Views/LocaisJogo/Index.js")
 }

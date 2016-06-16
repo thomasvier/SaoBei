@@ -26,9 +26,6 @@ namespace SaoBei.Models
         [DataType(DataType.Time)]
         public DateTime Hora { get; set; }
 
-        [Required]
-        public string Local { get; set; }
-
         [ForeignKey("Adversario")]
         public virtual int AdversarioID { get; set; }
 
@@ -44,5 +41,10 @@ namespace SaoBei.Models
 
         [Display(Name = "Motivo do cancelamento")]
         public string MotivoCancelamento { get; set; }
+
+        [ForeignKey("LocalJogo")]
+        public virtual int LocalJogoID { get; set; }
+
+        public virtual LocalJogo LocalJogo { get; set; }
     }
 }

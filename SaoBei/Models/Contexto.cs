@@ -31,5 +31,6 @@ namespace SaoBei.Models
         public System.Data.Entity.DbSet<SaoBei.Models.Mensalidades> Mensalidades { get; set; }
         public System.Data.Entity.DbSet<SaoBei.Models.Jogo> Jogos { get; set; }
         public System.Data.Entity.DbSet<SaoBei.Models.Adversario> Adversarios { get; set; }
+        public System.Data.Entity.DbSet<SaoBei.Models.LocalJogo> LocaisJogo { get; set; }
     }
 }

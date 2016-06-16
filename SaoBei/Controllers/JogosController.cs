@@ -82,9 +82,11 @@ namespace SaoBei.Controllers
 
                 List<Adversario> adversarios = AdversarioBll.RetornarAdversariosAtivos().ToList();
                 List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
+                List<LocalJogo> locaisJogo = LocalJogoBll.RetornarLocaisJogoAtivos().ToList();
                                     
                 ViewBag.Adversarios = adversarios;
                 ViewBag.Calendarios = calendarios;
+                ViewBag.LocaisJogo = locaisJogo;
 
                 if (id == null)
                 {
@@ -108,7 +110,7 @@ namespace SaoBei.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Jogo([Bind(Include = "ID,Data,Hora,Local,AdversarioID,Adversario,CalendarioID,Calendario,SituacaoJogo,MotivoCancelamento")] Jogo jogo)
+        public ActionResult Jogo([Bind(Include = "ID,Data,Hora,LocalJogoID,AdversarioID,Adversario,CalendarioID,Calendario,SituacaoJogo,MotivoCancelamento")] Jogo jogo)
         {
             try
             {

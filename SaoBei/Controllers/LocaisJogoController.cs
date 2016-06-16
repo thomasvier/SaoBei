@@ -12,9 +12,9 @@ using SaoBei.Negocio;
 namespace SaoBei.Controllers
 {
     [Authorize(Roles = "Diretoria")]
-    public class AdversariosController : Controller
+    public class LocaisJogoController : Controller
     {
-        // GET: Adversario
+        // GET: LocaisJogo
         public ActionResult Index(string sortOrder, string filtroAtual,
                                     string filtro, int? page,
                                     string ativoFiltro,
@@ -46,34 +46,34 @@ namespace SaoBei.Controllers
                 ViewBag.FiltroAtual = filtro;
                 ViewBag.AtivoFiltroAtual = ativoFiltro;
 
-                AdversarioBll adversarioBll = new AdversarioBll();
+                LocalJogoBll localJogoBll = new LocalJogoBll();
 
-                return View("~/Views/Adversarios/Index.cshtml", adversarioBll.BuscarAdversarios(page, filtro, sortOrder, ativoFiltro, 10));
+                return View("~/Views/LocaisJogo/Index.cshtml", localJogoBll.BuscarLocalJogos(page, filtro, sortOrder, ativoFiltro, 10));
             }
             catch (Exception exception)
             {
                 LogBll.GravarErro(exception, User.Identity.Name);
-                return View("~/Views/Adversarios/Index.cshtml").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+                return View("~/Views/LocaisJogo/Index.cshtml").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
             }
         }
 
         //GET
-        public ActionResult Adversario(int? id)
+        public ActionResult LocalJogo(int? id)
         {
             try
             {
-                Adversario adversario;
+                LocalJogo localJogo;
 
                 if (id == null)
                 {
-                    adversario = new Adversario();
+                    localJogo = new LocalJogo();
                 }
                 else
                 {
-                    adversario = AdversarioBll.RetornarAdversario(id);
+                    localJogo = LocalJogoBll.RetornarLocalJogo(id);
                 }
 
-                return View(adversario);
+                return View(localJogo);
             }
             catch (Exception exception)
             {
@@ -84,30 +84,45 @@ namespace SaoBei.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Adversario([Bind(Include = "ID,Nome,NomeContato,Telefone,Ativo")] Adversario adversario)
+        public ActionResult LocalJogo([Bind(Include = "ID,Nome,ValorJogo,Ativo")] LocalJogo localJogo)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    AdversarioBll adversarioBll = new AdversarioBll();
+                    LocalJogoBll localJogoBll = new LocalJogoBll();
 
-                    if (adversario.ID > 0)
+                    if (localJogo.ID > 0)
                     {
-                        adversarioBll.Atualizar(adversario);
-                        LogBll.GravarInformacao(string.Format(Resources.Adversario.AtualizacaoLog, adversario.ID), "", User.Identity.Name);
-                        return RedirectToAction("Index").ComMensagem(Resources.Adversario.AdversarioSalvo, TipoMensagem.Sucesso);
+                        localJogoBll.Atualizar(localJogo);
+                        LogBll.GravarInformacao(string.Format(Resources.LocalJogo.AtualizacaoLog, localJogo.ID), "", User.Identity.Name);
+                        return RedirectToAction("Index").ComMensagem(Resources.LocalJogo.LocalJogoSalvo, TipoMensagem.Sucesso);
                     }
                     else
                     {
-                        adversarioBll.Criar(adversario);
-                        LogBll.GravarInformacao(string.Format(Resources.Calendario.CriacaoLog, adversario.ID), "", User.Identity.Name);
-                        return RedirectToAction("Index").ComMensagem(Resources.Adversario.AdversarioSalvo, TipoMensagem.Sucesso);
-                     
+                        localJogoBll.Criar(localJogo);
+                        LogBll.GravarInformacao(string.Format(Resources.LocalJogo.CriacaoLog, localJogo.ID), "", User.Identity.Name);
+                        return RedirectToAction("Index").ComMensagem(Resources.LocalJogo.LocalJogoSalvo, TipoMensagem.Sucesso);
+
                     }
                 }
 
-                return View(adversario);
+                return View(localJogo);
+            }
+            catch (Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
+        }
+
+        public ActionResult Detalhes(int? id)
+        {
+            try
+            {
+                LocalJogo localJogo = LocalJogoBll.RetornarLocalJogo(id);
+
+                return View(localJogo);
             }
             catch (Exception exception)
             {

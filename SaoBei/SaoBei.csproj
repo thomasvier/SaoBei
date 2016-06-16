@@ -132,6 +132,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntegrantesController.cs" />
     <Compile Include="Controllers\JogosController.cs" />
+    <Compile Include="Controllers\LocaisJogoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,13 +144,27 @@
     <Compile Include="Migrations\201606101236019_datahora.Designer.cs">
       <DependentUpon>201606101236019_datahora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606152346030_localjogo.cs" />
+    <Compile Include="Migrations\201606152346030_localjogo.Designer.cs">
+      <DependentUpon>201606152346030_localjogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606160051127_localjogojogos.cs" />
+    <Compile Include="Migrations\201606160051127_localjogojogos.Designer.cs">
+      <DependentUpon>201606160051127_localjogojogos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606160057116_localjogojogos1.cs" />
+    <Compile Include="Migrations\201606160057116_localjogojogos1.Designer.cs">
+      <DependentUpon>201606160057116_localjogojogos1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
     <Compile Include="Models\Adversario.cs" />
     <Compile Include="Models\Calendario.cs" />
     <Compile Include="Models\Contexto.cs" />
+    <Compile Include="Models\DecimalModelBinder.cs" />
     <Compile Include="Models\Integrante.cs" />
     <Compile Include="Models\Jogo.cs" />
+    <Compile Include="Models\LocalJogo.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Mensalidades.cs" />
     <Compile Include="Models\SituacaoJogo.cs" />
@@ -162,6 +177,7 @@
     <Compile Include="Negocio\CalendarioBll.cs" />
     <Compile Include="Negocio\IntegranteBll.cs" />
     <Compile Include="Negocio\JogoBll.cs" />
+    <Compile Include="Negocio\LocalJogoBll.cs" />
     <Compile Include="Negocio\LogBll.cs" />
     <Compile Include="Negocio\MensalidadesBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,6 +205,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Jogos.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\LocalJogo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalJogo.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +368,8 @@
     <Content Include="Scripts\Views\Integrantes\Index.js" />
     <Content Include="Scripts\Views\Integrantes\Integrante.js" />
     <Content Include="Scripts\Views\Jogos\Index.js" />
+    <Content Include="Scripts\Views\LocaisJogo\Index.js" />
+    <Content Include="Scripts\Views\LocaisJogo\LocalJogo.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -379,6 +402,9 @@
     <Content Include="Views\Jogos\Index.cshtml" />
     <Content Include="Views\Jogos\Jogo.cshtml" />
     <Content Include="Views\Jogos\Detalhes.cshtml" />
+    <Content Include="Views\LocaisJogo\Index.cshtml" />
+    <Content Include="Views\LocaisJogo\LocalJogo.cshtml" />
+    <Content Include="Views\LocaisJogo\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -396,6 +422,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606101236019_datahora.resx">
       <DependentUpon>201606101236019_datahora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606152346030_localjogo.resx">
+      <DependentUpon>201606152346030_localjogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606160051127_localjogojogos.resx">
+      <DependentUpon>201606160051127_localjogojogos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606160057116_localjogojogos1.resx">
+      <DependentUpon>201606160057116_localjogojogos1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -416,6 +451,10 @@
     <EmbeddedResource Include="Resources\Jogos.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Jogos.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LocalJogo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalJogo.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

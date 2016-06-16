@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SaoBei.Models;
+using SaoBei.Negocio;
 
 namespace SaoBei.Controllers
 {
@@ -11,6 +16,12 @@ namespace SaoBei.Controllers
     {
         public ActionResult Index()
         {
+            Jogo jogo = JogoBll.RetornarProximoJogoConfirmado();
+
+            ViewBag.Adversario = jogo.Adversario.Nome;
+            ViewBag.Local = jogo.LocalJogo.Nome;
+            ViewBag.Data = string.Format("{0:dd/MM/yyyy HH:mm}", jogo.Data);
+
             return View();
         }
 
