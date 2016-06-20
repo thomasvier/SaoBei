@@ -101,6 +101,8 @@ namespace SaoBei.Controllers
                         }
                         else
                         {
+
+
                             integranteBll.Atualizar(integrante);
                             LogBll.GravarInformacao(string.Format(Resources.Integrantes.AtualizacaoLog, integrante.ID), "", User.Identity.Name);
                             return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
@@ -113,9 +115,27 @@ namespace SaoBei.Controllers
                             return View().ComMensagem(Resources.Integrantes.IntegranteExistente, TipoMensagem.Aviso);
                         }
                         else
-                        { 
+                        {
                             integranteBll.Criar(integrante);
-                            LogBll.GravarInformacao(string.Format(Resources.Calendario.CriacaoLog, integrante.ID), "", User.Identity.Name);
+                            LogBll.GravarInformacao(string.Format(Resources.Calendario.CriacaoLog, integrante.ID), "", User.Identity.Name);                            
+                            
+                            MensalidadesBll mensalidadesBll = new MensalidadesBll();
+
+                            IQueryable<Calendario> calendarios = CalendarioBll.ListarCalendarios();
+
+                            foreach (Calendario calendario in calendarios)
+                            {
+                                if (!mensalidadesBll.VerificarExisteMensalidadesCalendarioIntegrante(integrante.ID, calendario.ID))
+                                {
+                                    Mensalidades mensalidade = new Mensalidades();
+
+                                    mensalidade.IntegrandeID = integrante.ID;
+                                    mensalidade.CalendarioID = calendario.ID;
+
+                                    mensalidadesBll.Criar(mensalidade);
+                                }
+                            }
+
                             return RedirectToAction("Index").ComMensagem(Resources.Integrantes.IntegranteSalvo, TipoMensagem.Sucesso);
                         }
                     }

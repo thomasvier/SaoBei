@@ -133,12 +133,17 @@
     <Compile Include="Controllers\IntegrantesController.cs" />
     <Compile Include="Controllers\JogosController.cs" />
     <Compile Include="Controllers\LocaisJogoController.cs" />
+    <Compile Include="Controllers\MensalidadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201606161138548_initial.cs" />
     <Compile Include="Migrations\201606161138548_initial.Designer.cs">
       <DependentUpon>201606161138548_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606192122458_mensalidades.cs" />
+    <Compile Include="Migrations\201606192122458_mensalidades.Designer.cs">
+      <DependentUpon>201606192122458_mensalidades.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
@@ -389,6 +394,7 @@
     <Content Include="Views\LocaisJogo\Index.cshtml" />
     <Content Include="Views\LocaisJogo\LocalJogo.cshtml" />
     <Content Include="Views\LocaisJogo\Detalhes.cshtml" />
+    <Content Include="Views\Mensalidades\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -403,6 +409,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606161138548_initial.resx">
       <DependentUpon>201606161138548_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606192122458_mensalidades.resx">
+      <DependentUpon>201606192122458_mensalidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>

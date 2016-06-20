@@ -17,9 +17,9 @@
         })
     });
 
-    $('#teste').click(function () {
-        bootbox.confirm("Teste", function (result) {
-            console.log(result);
-        });
-    });
+    //$('#teste').click(function () {
+    //    bootbox.confirm("Teste", function (result) {
+    //        console.log(result);
+    //    });
+    //});
 })

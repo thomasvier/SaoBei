@@ -25,11 +25,11 @@ namespace SaoBei.Negocio
             return calendario;
         }
 
-        public static List<Calendario> ListarCalendarios()
+        public static IQueryable<Calendario> ListarCalendarios()
         {
             Contexto db = new Contexto();
 
-            List<Calendario> calendarios = db.Calendarios.OrderBy(c => c.Ano).ToList();
+            IQueryable<Calendario> calendarios = db.Calendarios.OrderBy(c => c.Ano);
 
             return calendarios;
         }

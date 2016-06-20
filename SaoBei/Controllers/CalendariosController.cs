@@ -21,7 +21,7 @@ namespace SaoBei.Controllers
         {
             try
             {
-                List<Calendario> calendarios = CalendarioBll.ListarCalendarios();
+                IQueryable<Calendario> calendarios = CalendarioBll.ListarCalendarios();
 
                 return View(calendarios);
             }
