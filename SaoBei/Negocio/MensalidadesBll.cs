@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using SaoBei.Models;
 using System.Data.Entity;
+using Chart.Mvc.ComplexChart;
 
 namespace SaoBei.Negocio
 {
@@ -117,6 +118,92 @@ namespace SaoBei.Negocio
                     mensalidadesBll.Criar(mensalidades);
                 }
             }
+        }
+
+        public static int RetornarNumeroPagosMes(int ano, int mes)
+        {
+            Contexto db = new Contexto();
+
+            IQueryable<Mensalidades> mensalidades = (from m in db.Mensalidades
+                                                     where m.Integrante.Ativo
+                                                     select m);
+            
+            
+
+            return 0;
+        }
+
+        public static void GraficoMensalidades(int ano, out IEnumerable<string> labels, out IEnumerable<ComplexDataset> dataset)
+        {
+            List<string> meses = new List<string>();
+            List<double> dados = new List<double>();
+
+            Calendario calendario = CalendarioBll.RetornarCalendario(ano);
+
+            if (calendario.Janeiro)
+            {
+                meses.Add("Janeiro");
+                dados.Add(0);
+            }
+
+            if (calendario.Fevereiro)
+            {
+                meses.Add("Fevereiro");
+                dados.Add(0);
+            }
+
+            if (calendario.Marco)
+            {
+                meses.Add("Março");
+                dados.Add(3);
+            }
+
+            if (calendario.Abril)
+            {
+                meses.Add("Abril");
+                dados.Add(10);
+            }
+
+            if (calendario.Maio)
+            {
+                meses.Add("Maio");
+                dados.Add(8);
+            }
+
+            if (calendario.Junho)
+            {
+                meses.Add("Junho");
+                dados.Add(9);
+            }
+
+            if (calendario.Julho)
+            {
+                meses.Add("Julho");
+                dados.Add(11);
+            }
+
+            if (calendario.Agosto)
+            {
+                meses.Add("Agosto");
+                dados.Add(14);
+            }
+
+            List<ComplexDataset> complexDataSets = new List<ComplexDataset>();
+
+            complexDataSets.Add(new ComplexDataset
+            {
+                Data = dados,
+                Label = "My First dataset",
+                FillColor = "rgba(12, 29, 86, 0.7)",
+                StrokeColor = "yellow",
+                PointColor = "white",
+                PointStrokeColor = "black",
+                PointHighlightFill = "black",
+                PointHighlightStroke = "rgba(220,220,220,1)"
+            });
+
+            labels = meses;
+            dataset = complexDataSets;
         }
     }
 }

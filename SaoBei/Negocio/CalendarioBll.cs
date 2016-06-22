@@ -25,6 +25,15 @@ namespace SaoBei.Negocio
             return calendario;
         }
 
+        public static Calendario RetornarCalendario(int ano)
+        {
+            Contexto db = new Contexto();
+
+            Calendario calendario = db.Calendarios.Where(c => c.Ano == ano).FirstOrDefault();
+
+            return calendario;
+        }
+
         public static IQueryable<Calendario> ListarCalendarios()
         {
             Contexto db = new Contexto();

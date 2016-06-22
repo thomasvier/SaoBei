@@ -1,0 +1,36 @@
+﻿@model SaoBei.Models.Mensalidades
+@using SaoBei.Models;
+
+@{
+    ViewBag.Title = "Mensalidade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mensalidades</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.Label("Calendário")
+
+        @Html.DropDownListFor(model => model.CalendarioID, new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })
+    </div>
+</div>
+
+@foreach (Integrante integrante in ViewBag.Integrantes as List<Integrante>)
+{
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <p>@integrante.Nome</p>
+        </div>
+        <div class="col-md-3">
+            <p>Situação: Pendente</p>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <button class="btn btn-primary details" title="Visualizar" data-id="@integrante.ID"><i class="glyphicon glyphicon-new-window"></i></button>
+            </div>
+        </div>
+    </div>
+}
+

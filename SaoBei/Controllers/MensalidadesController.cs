@@ -8,13 +8,35 @@ using System.Web;
 using System.Web.Mvc;
 using SaoBei.Models;
 using SaoBei.Negocio;
+using Chart.Mvc.ComplexChart;
 
 namespace SaoBei.Controllers
 {
     public class MensalidadesController : Controller
     {
-        // GET: Mensalidades
+        // GET: Index
         public ActionResult Index()
+        {
+            IEnumerable<string> Labels;
+
+            IEnumerable<ComplexDataset> Datasets;
+
+            MensalidadesBll.GraficoMensalidades(DateTime.Now.Year, out Labels, out Datasets);
+
+            ViewBag.Labels = Labels;
+            ViewBag.Datasets = Datasets;
+
+            return View();
+        }
+
+        public ActionResult GraficoMensalidadesMes()
+        {
+            
+
+            return PartialView();
+        }
+
+        public ActionResult Mensalidade()
         {
             List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
 
