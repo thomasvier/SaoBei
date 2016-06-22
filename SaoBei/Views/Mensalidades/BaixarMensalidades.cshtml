@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SaoBei.Models.MensalidadeIntegrante>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Mensalidades</h4>
+        </div>
+        <div class="modal-body">
+            @foreach (var item in Model)
+            {
+                <div style="border-top: 1px solid rgba(12, 29, 86, 0.2); padding: 3px 3px 3px 3px">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>@item.Mes</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Salvar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>
+

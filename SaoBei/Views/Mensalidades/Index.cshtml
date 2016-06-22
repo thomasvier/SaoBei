@@ -1,4 +1,4 @@
-﻿@model SaoBei.Models.Mensalidades
+﻿@model SaoBei.Models.MensalidadeIntegrante
 @using SaoBei.Models;
 
 @{
@@ -6,9 +6,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-4">
-        <h5>Mensalidades pagas por mês (@DateTime.Now.Year)</h5>
-        @Html.Partial("GraficoMensalidadesMes")
+@using (Html.BeginForm("Index", "Mensalidades", FormMethod.Get))
+{
+    <div class="row">        
+        <div class="col-md-12">                        
+            @Html.Label("Calendário", htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(model => model.CalendarioID, new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })                        
+        </div>                
+        <br />        
+        <div class="col-md-12">                        
+            <button type="button" title="Baixar mensalidade" name="btnBaixar" id="btnBaixar" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Mensalidade", "Mensalidades", new { Model.CalendarioID })'">
+                <i class="glyphicon glyphicon-usd"></i> Baixar mensalidades
+            </button>
+        </div>
     </div>
-</div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Gráfico de mensalidades pagas por mês (2016)</div>
+                <div class="panel-body">
+                    @Html.Partial("GraficoMensalidadesMes")
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Gráfico de anuidades pagas por mês (2016)</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Valor de mensalidades pagas por mês (2016)</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

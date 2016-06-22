@@ -148,6 +148,14 @@
     <Compile Include="Migrations\201606192122458_mensalidades.Designer.cs">
       <DependentUpon>201606192122458_mensalidades.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606221856321_mensalidades1.cs" />
+    <Compile Include="Migrations\201606221856321_mensalidades1.Designer.cs">
+      <DependentUpon>201606221856321_mensalidades1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606221907306_datapagamentomensalidade.cs" />
+    <Compile Include="Migrations\201606221907306_datapagamentomensalidade.Designer.cs">
+      <DependentUpon>201606221907306_datapagamentomensalidade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
     <Compile Include="Models\Adversario.cs" />
@@ -158,7 +166,7 @@
     <Compile Include="Models\Jogo.cs" />
     <Compile Include="Models\LocalJogo.cs" />
     <Compile Include="Models\Log.cs" />
-    <Compile Include="Models\Mensalidades.cs" />
+    <Compile Include="Models\MensalidadeIntegrante.cs" />
     <Compile Include="Models\SituacaoJogo.cs" />
     <Compile Include="Models\TempDataActionResult.cs" />
     <Compile Include="Models\TipoIntegrante.cs" />
@@ -171,7 +179,7 @@
     <Compile Include="Negocio\JogoBll.cs" />
     <Compile Include="Negocio\LocalJogoBll.cs" />
     <Compile Include="Negocio\LogBll.cs" />
-    <Compile Include="Negocio\MensalidadesBll.cs" />
+    <Compile Include="Negocio\MensalidadeIntegranteBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Adversario.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -363,6 +371,7 @@
     <Content Include="Scripts\Views\Jogos\Index.js" />
     <Content Include="Scripts\Views\LocaisJogo\Index.js" />
     <Content Include="Scripts\Views\LocaisJogo\LocalJogo.js" />
+    <Content Include="Scripts\Views\Mensalidades\Mensalidade.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -401,6 +410,7 @@
     <Content Include="Views\Mensalidades\Index.cshtml" />
     <Content Include="Views\Mensalidades\Mensalidade.cshtml" />
     <Content Include="Views\Mensalidades\GraficoMensalidadesMes.cshtml" />
+    <Content Include="Views\Mensalidades\BaixarMensalidades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -418,6 +428,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606192122458_mensalidades.resx">
       <DependentUpon>201606192122458_mensalidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606221856321_mensalidades1.resx">
+      <DependentUpon>201606221856321_mensalidades1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606221907306_datapagamentomensalidade.resx">
+      <DependentUpon>201606221907306_datapagamentomensalidade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>

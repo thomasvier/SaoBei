@@ -15,45 +15,80 @@ namespace SaoBei.Controllers
     public class MensalidadesController : Controller
     {
         // GET: Index
-        public ActionResult Index()
+        public ActionResult Index(int? calendarioId)
         {
-            IEnumerable<string> Labels;
-
-            IEnumerable<ComplexDataset> Datasets;
-
-            MensalidadesBll.GraficoMensalidades(DateTime.Now.Year, out Labels, out Datasets);
-
-            ViewBag.Labels = Labels;
-            ViewBag.Datasets = Datasets;
-
-            return View();
-        }
-
-        public ActionResult GraficoMensalidadesMes()
-        {
-            
-
-            return PartialView();
-        }
-
-        public ActionResult Mensalidade()
-        {
-            List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
-
-            ViewBag.Calendarios = calendarios;
-
-            Mensalidades mensalidades = new Mensalidades();
-
-            if (calendarios.Count > 0)
+            try
             {
-                mensalidades.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
+                IEnumerable<string> Labels;
+                IEnumerable<ComplexDataset> Datasets;
+                List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
+                MensalidadeIntegranteBll.GraficoMensalidadeIntegrante(DateTime.Now.Year, out Labels, out Datasets);
+
+                ViewBag.Labels = Labels;
+                ViewBag.Datasets = Datasets;
+                ViewBag.Calendarios = calendarios;
+
+                MensalidadeIntegrante mensalidade = new MensalidadeIntegrante();
+
+                mensalidade.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
+
+                return View(mensalidade);
             }
+            catch(Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return View();
+            }
+        }
 
-            List<Integrante> integrantes = IntegranteBll.RetornarIntegrantesAtivos().ToList();
+        public ActionResult Mensalidade(int? CalendarioID)
+        {
+            try
+            {
+                List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
 
-            ViewBag.Integrantes = integrantes;
+                ViewBag.Calendarios = calendarios;
 
-            return View(mensalidades);
+                MensalidadeIntegrante mensalidades = new MensalidadeIntegrante();
+
+                if (calendarios.Count > 0)
+                {
+                    if (CalendarioID > 0)
+                    {
+                        mensalidades.CalendarioID = calendarios.Where(c => c.ID == CalendarioID).FirstOrDefault().ID;
+                    }
+                    else
+                    {
+                        mensalidades.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
+                    }
+                }
+
+                List<Integrante> integrantes = IntegranteBll.RetornarIntegrantesAtivos().ToList();
+
+                ViewBag.Integrantes = integrantes;
+
+                return View(mensalidades);
+            }
+            catch(Exception exception)
+            {
+                LogBll.GravarErro(exception, this.User.Identity.Name);
+                return View().ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
+        }
+
+        public ActionResult BaixarMensalidades(int? integrante, int? calendario)
+        {
+            try
+            {
+                List<MensalidadeIntegrante> mensalidadesIntegrante = MensalidadeIntegranteBll.RetornarMensalidadesIntegranteCalendario(integrante, calendario).ToList();
+
+                return PartialView(mensalidadesIntegrante);
+            }
+            catch (Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
+            }
         }
     }
 }

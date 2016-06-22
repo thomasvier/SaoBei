@@ -81,23 +81,8 @@ namespace SaoBei.Controllers
                         {
                             calendarioBll.Atualizar(calendario);
 
-                            IQueryable<Integrante> integrantes = IntegranteBll.RetornarIntegrantesAtivos();
-
-                            foreach (Integrante integrante in integrantes)
-                            {
-                                MensalidadesBll mensalidadesBll = new MensalidadesBll();
-
-                                //Verifica se o integrante já possui mensalidades para este calendário
-                                if (!mensalidadesBll.VerificarExisteMensalidadesCalendarioIntegrante(integrante.ID, calendario.ID))
-                                {
-                                    Mensalidades mensalidades = new Mensalidades();
-
-                                    mensalidades.IntegrandeID = integrante.ID;
-                                    mensalidades.CalendarioID = calendario.ID;
-
-                                    mensalidadesBll.Criar(mensalidades);
-                                }
-                            }
+                            MensalidadeIntegranteBll mensalidadeIntegranteBll = new MensalidadeIntegranteBll();
+                            mensalidadeIntegranteBll.CriarMensalidadesTodosIntegrantesCalendario(calendario);
 
                             LogBll.GravarInformacao(string.Format(Resources.Calendario.AtualizacaoLog, calendario.ID), "", User.Identity.Name);
                             return RedirectToAction("Index").ComMensagem(Resources.Calendario.CalendarioAtualizado, TipoMensagem.Sucesso);
@@ -112,6 +97,10 @@ namespace SaoBei.Controllers
                         else
                         {
                             calendarioBll.Criar(calendario);
+
+                            MensalidadeIntegranteBll mensalidadeIntegranteBll = new MensalidadeIntegranteBll();
+                            mensalidadeIntegranteBll.CriarMensalidadesTodosIntegrantesCalendario(calendario);
+
                             LogBll.GravarInformacao(string.Format(Resources.Calendario.CriacaoLog, calendario.ID), "", User.Identity.Name);
                             return RedirectToAction("Index").ComMensagem(Resources.Calendario.CalendarioSalvo, TipoMensagem.Sucesso);
                         }
