@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201606222328361_integrantesmen.Designer.cs">
       <DependentUpon>201606222328361_integrantesmen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606231850185_datapagamento.cs" />
+    <Compile Include="Migrations\201606231850185_datapagamento.Designer.cs">
+      <DependentUpon>201606231850185_datapagamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
     <Compile Include="Models\Adversario.cs" />
@@ -376,6 +380,7 @@
     <Content Include="Scripts\Views\LocaisJogo\Index.js" />
     <Content Include="Scripts\Views\LocaisJogo\LocalJogo.js" />
     <Content Include="Scripts\Views\Mensalidades\BaixarMensalidades.js" />
+    <Content Include="Scripts\Views\Mensalidades\Index.js" />
     <Content Include="Scripts\Views\Mensalidades\Mensalidade.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -442,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606222328361_integrantesmen.resx">
       <DependentUpon>201606222328361_integrantesmen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606231850185_datapagamento.resx">
+      <DependentUpon>201606231850185_datapagamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>

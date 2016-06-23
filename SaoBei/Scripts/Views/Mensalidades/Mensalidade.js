@@ -1,9 +1,13 @@
 ﻿$(document).ready(function () {
+    $("#IntegranteID").change(function () {
+        if ($('#CalendarioID').val() != '' && $('#IntegranteID').val() != '') {
+            $("#formMensalidades").submit();
+        }
+    });
 
     $(".details").click(function () {        
-        var integranteID = $(this).attr("data-integrante");
-        var calendarioID = $(this).attr("data-calendario");
-        $("#baixarMensalidades").load("/Mensalidades/BaixarMensalidades?integranteID=" + integranteID + "&calendarioID=" + calendarioID, function () {
+        var mensalidadeIntegranteID = $(this).attr("data-mensalidade");
+        $("#baixarMensalidades").load("/Mensalidades/BaixarMensalidades?mensalidadeIntegranteID=" + mensalidadeIntegranteID, function () {
             $("#baixarMensalidades").modal();
         })
     });

@@ -23,6 +23,8 @@ namespace SaoBei.Models
 
         public Integrante Integrante { get; set; }
 
+        [Display(Name = "Data de pagamento da anuidade")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DataPagamento { get; set; }
     }
 }

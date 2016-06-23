@@ -1,8 +1,4 @@
-﻿$(document).ready(function () {
-    $("#teste").click(function () {
-        alert('sadasd');
-    });
-    
+﻿$(document).ready(function () {    
     var table = $('#mensalidades');
 
     table.find('tr').each(function () {
@@ -16,20 +12,10 @@
                 }
                 else
                 {
-                    texto.attr('disabled', 'disabled')
+                    texto.attr('disabled', 'disabled');
+                    texto.text('');
+                    texto.val('');
                 }
         });
-    });
-
-    //$('#pago').change(function () {
-
-    //    if ($(this).is(':checked'))
-    //    {            
-    //        $('#item_DataPagamento').removeAttr('disabled');
-    //    }
-    //    else
-    //    {
-    //        $('#item_DataPagamento').attr('disabled', 'disabled')
-    //    }
-    //});
+    });    
 });

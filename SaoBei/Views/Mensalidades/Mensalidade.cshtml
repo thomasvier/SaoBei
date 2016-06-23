@@ -1,5 +1,6 @@
-﻿@model SaoBei.Models.MensalidadeIntegrante
+﻿@model IEnumerable<SaoBei.Models.MensalidadeIntegrante>
 @using SaoBei.Models;
+@using System.Globalization;
 
 @{
     ViewBag.Title = "Mensalidade";
@@ -8,39 +9,54 @@
 
 <h2>Mensalidades</h2>
 
-@using (Html.BeginForm("Mensalidade", "Mensalidades", FormMethod.Get))
+@using (Html.BeginForm("Mensalidade", "Mensalidades", FormMethod.Get, new { name = "formMensalidades", id = "formMensalidades" }))
 {
 
     <div class="row" style="margin-bottom: 20px">
         <div class="col-md-12">
             @Html.Label("Calendário")
-            @Html.DropDownListFor(model => model.CalendarioID, new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("CalendarioID", new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-12">
+            @Html.Label("Integrante")
+            @Html.DropDownList("IntegranteID", new SelectList(ViewBag.Integrantes, "ID", "Nome"), "Selecione", htmlAttributes: new { @class = "form-control" })
         </div>
     </div>
 }
 
-@foreach (Integrante integrante in ViewBag.Integrantes as List<Integrante>)
-{
-    <div style="border-top: 1px solid rgba(12, 29, 86, 0.2); padding: 3px 3px 3px 3px">
-        <div class="row">
-            <div class="col-md-8">
-                <p>@integrante.Nome</p>
-            </div>
-            <div class="col-md-3">
-                <p>Situação: Pendente</p>
-            </div>
-            <div class="row">
-                <div class="col-md-1">
-                    <button class="btn btn-success details pull-right btn-block" title="Baixar" data-integrante="@integrante.ID" data-calendario="@Model.CalendarioID"><i class="glyphicon glyphicon-usd"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Mês
+            </th>            
+            <th>                
+            </th>
+        </tr>
 
+        @foreach (var item in Model)
+        {
+            var mes = new DateTime(DateTime.Now.Year, item.Mes, 1).ToString("MMMM", CultureInfo.CurrentCulture);
+
+            <tr>
+                <td>
+                    @mes
+                </td>
+                <td>
+                    <button id="baixar" class="btn btn-success details pull-right btn-block" title="Baixar" 
+                        data-mensalidade="@item.ID">
+                        <i class="glyphicon glyphicon-usd"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 <div id="baixarMensalidades" class="modal"></div>
 
 @section Scripts {
     @Scripts.Render("~/Scripts/Views/Mensalidades/Mensalidade.js")
-    
 }

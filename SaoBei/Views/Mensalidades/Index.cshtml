@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Index", "Mensalidades", FormMethod.Get))
+@using (Html.BeginForm("Index", "Mensalidades", FormMethod.Get, new { name = "formIndexMensalidades", id = "formIndexMensalidades" }))
 {
     <div class="row">        
         <div class="col-md-12">                        
@@ -47,4 +47,8 @@
             </div>
         </div>
     </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Views/Mensalidades/Index.js")
 }

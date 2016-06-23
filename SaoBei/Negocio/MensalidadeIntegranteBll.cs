@@ -115,6 +115,7 @@ namespace SaoBei.Negocio
 
             return mensalidades;
         }
+        
 
         /// <summary>
         /// Verifica se existe mensalidades para o integrante no calendário recebido
@@ -170,6 +171,94 @@ namespace SaoBei.Negocio
             IQueryable<MensalidadeIntegrante> mensalidades = db.MensalidadesIntegrante.Where(x => x.CalendarioID == calendarioID && x.IntegranteID == integranteID);
 
             return mensalidades;
+        }
+
+        public static MensalidadeIntegrante RetornarMensalidadeIntegranteCalendario(int? mensalidadeID)
+        {
+            Contexto db = new Contexto();
+
+            MensalidadeIntegrante mensalidade = db.MensalidadesIntegrante.FirstOrDefault(x => x.ID == mensalidadeID);
+
+            return mensalidade;
+        }
+
+        public static IList<MensalidadeIntegrante> RetornarMensalidadesSeremBaixadas(int? integranteID, int? calendarioID)
+        {
+            Contexto db = new Contexto();
+
+            IQueryable<MensalidadeIntegrante> mensalidades = db.MensalidadesIntegrante.Where(x => x.CalendarioID == calendarioID && x.IntegranteID == integranteID);
+            Calendario calendario = db.Calendarios.FirstOrDefault(c => c.ID == calendarioID);
+
+            IList<MensalidadeIntegrante> mensalidadesSeremBaixadas = RetornarMesesAtivos(calendario, mensalidades);
+
+            return mensalidadesSeremBaixadas;
+        }
+
+        public static IList<MensalidadeIntegrante> RetornarMesesAtivos(Calendario calendario, IQueryable<MensalidadeIntegrante> mensalidades)
+        {
+            IList<MensalidadeIntegrante> mensalidadesSeremBaixadas = new List<MensalidadeIntegrante>();
+
+            if (calendario.Janeiro)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 1));
+            }
+
+            if(calendario.Fevereiro)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 2));
+            }
+
+            if (calendario.Marco)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 3));
+            }
+
+            if (calendario.Abril)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 4));
+            }
+
+            if (calendario.Maio)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 5));
+            }
+
+            if (calendario.Junho)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 6));
+            }
+
+            if (calendario.Julho)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 7));
+            }
+
+            if (calendario.Agosto)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 8));
+            }
+
+            if (calendario.Setembro)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 9));
+            }
+
+            if (calendario.Outubro)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 10));
+            }
+
+            if (calendario.Novembro)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 11));
+            }
+
+            if (calendario.Dezembro)
+            {
+                mensalidadesSeremBaixadas.Add(mensalidades.FirstOrDefault(m => m.Mes == 12));
+            }
+
+            return mensalidadesSeremBaixadas;
         }
 
         public static int RetornarNumeroPagosMes(int ano, int mes)

@@ -30,7 +30,14 @@ namespace SaoBei.Controllers
 
                 MensalidadeIntegrante mensalidade = new MensalidadeIntegrante();
 
-                mensalidade.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
+                if (calendarioId > 0)
+                {
+                    mensalidade.CalendarioID = (int)calendarioId;
+                }
+                else
+                {
+                    mensalidade.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
+                }
 
                 return View(mensalidade);
             }
@@ -41,31 +48,23 @@ namespace SaoBei.Controllers
             }
         }
 
-        public ActionResult Mensalidade(int? CalendarioID)
+        public ActionResult Mensalidade(int? CalendarioID, int? IntegranteID)
         {
             try
             {
                 List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
-
-                ViewBag.Calendarios = calendarios;
-
-                MensalidadeIntegrante mensalidades = new MensalidadeIntegrante();
-
-                if (calendarios.Count > 0)
-                {
-                    if (CalendarioID > 0)
-                    {
-                        mensalidades.CalendarioID = calendarios.Where(c => c.ID == CalendarioID).FirstOrDefault().ID;
-                    }
-                    else
-                    {
-                        mensalidades.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
-                    }
-                }
-
                 List<Integrante> integrantes = IntegranteBll.RetornarIntegrantesAtivos().ToList();
 
+                ViewBag.Calendarios = calendarios;
                 ViewBag.Integrantes = integrantes;
+                ViewBag.Integrantes = integrantes;
+
+                IList<MensalidadeIntegrante> mensalidades = new List<MensalidadeIntegrante>();
+
+                if (calendarios.Count > 0 && IntegranteID > 0)
+                {
+                    mensalidades = MensalidadeIntegranteBll.RetornarMensalidadesIntegranteCalendario(IntegranteID, CalendarioID).ToList();
+                }
 
                 return View(mensalidades);
             }
@@ -76,13 +75,15 @@ namespace SaoBei.Controllers
             }
         }
 
-        public ActionResult BaixarMensalidades(int? integranteID, int? calendarioID)
+        public ActionResult BaixarMensalidades(int? mensalidadeIntegranteID)
         {
             try
             {
-                List<MensalidadeIntegrante> mensalidadesIntegrante = MensalidadeIntegranteBll.RetornarMensalidadesIntegranteCalendario(integranteID, calendarioID).ToList();
+                MensalidadeIntegrante mensalidade = MensalidadeIntegranteBll.RetornarMensalidadeIntegranteCalendario(mensalidadeIntegranteID);
+                ViewBag.Nome = IntegranteBll.RetornarIntegrante(mensalidade.IntegranteID).Nome;
+
                 //Integrante integrante = IntegranteBll.RetornarIntegranteMensalidades(integranteID, calendarioID);
-                return PartialView(mensalidadesIntegrante);
+                return PartialView(mensalidade);
             }
             catch (Exception exception)
             {
@@ -93,9 +94,21 @@ namespace SaoBei.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BaixarMensalidades([Bind(Include = "ID,Mes,DataPagamento")] IEnumerable<MensalidadeIntegrante> mensalidadesIntegrante)
+        public ActionResult BaixarMensalidades([Bind(Include = "ID,Mes,CalendarioID,IntegranteID,DataPagamento")] MensalidadeIntegrante mensalidadeIntegrante)
         {
-            return View();
+            try
+            {
+                MensalidadeIntegranteBll mensalidadeIntegranteBll = new MensalidadeIntegranteBll();
+
+                mensalidadeIntegranteBll.Atualizar(mensalidadeIntegrante);
+
+                return RedirectToAction("Mensalidade", "Mensalidades");
+            }
+            catch(Exception exception)
+            {
+                LogBll.GravarErro(exception, User.Identity.Name);
+                return RedirectToAction("Mensalidade", "Mensalidades");
+            }
         }
     }
 }
