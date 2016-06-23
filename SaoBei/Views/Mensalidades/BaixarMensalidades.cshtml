@@ -1,5 +1,9 @@
-﻿@model IEnumerable<SaoBei.Models.MensalidadeIntegrante>
+﻿@model IList<SaoBei.Models.MensalidadeIntegrante>
+@using System.Globalization;
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -7,21 +11,48 @@
             <h4 class="modal-title">Mensalidades</h4>
         </div>
         <div class="modal-body">
-            @foreach (var item in Model)
-            {
-                <div style="border-top: 1px solid rgba(12, 29, 86, 0.2); padding: 3px 3px 3px 3px">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p>@item.Mes</p>
-                        </div>
-                    </div>
-                </div>
-            }
+            <div class="table-responsive">
+                <table id="mensalidades" class="table table-striped">
+                    <tr>
+                        <th>
+                            Mês
+                        </th>
+                        <th>
+                            Pago
+                        </th>
+                        <th class="text-right">
+                            Data do pagamento
+                        </th>
+                    </tr>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var mes = new DateTime(DateTime.Now.Year, Model[i].Mes, 1).ToString("MMMM", CultureInfo.CurrentCulture);
+                        @Html.HiddenFor(model => model[i].ID);
+                        
+                        <tr>
+                            <td>
+                                @mes
+                            </td>
+                            <td>
+                                <input type="checkbox" id="pago" />
+                            </td>
+                            <td>
+                                <div class="pull-right">
+                                        @Html.TextBoxFor(model => model[i].DataPagamento, htmlAttributes: new { @class = "form-control input-sm datapagamento", @disabled = "disabled" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Salvar</button>
+            <button type="submit" id="teste" name="teste" class="btn btn-default">Salvar</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
         </div>
     </div>
 </div>
+}
+<script src="@Url.Content("~/Scripts/Views/Mensalidades/BaixarMensalidades.js")" type="text/javascript"></script>
+
 

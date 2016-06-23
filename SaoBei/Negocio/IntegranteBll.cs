@@ -134,6 +134,17 @@ namespace SaoBei.Negocio
             return integrantes;
         }
 
+        public static Integrante RetornarIntegranteMensalidades(int? integranteID, int? calendarioID)
+        {
+            Contexto db = new Contexto();
+
+            Integrante integrante = db.Integrantes.Where(i => i.ID == integranteID).FirstOrDefault();
+
+            integrante.Mensalidades = db.MensalidadesIntegrante.Where(m => m.CalendarioID == calendarioID && m.IntegranteID == integranteID).ToList();
+
+            return integrante;
+        }
+
         public static TipoIntegrante RetornarTipoIntegrante(string email)
         {
             Contexto db = new Contexto();

@@ -76,12 +76,12 @@ namespace SaoBei.Controllers
             }
         }
 
-        public ActionResult BaixarMensalidades(int? integrante, int? calendario)
+        public ActionResult BaixarMensalidades(int? integranteID, int? calendarioID)
         {
             try
             {
-                List<MensalidadeIntegrante> mensalidadesIntegrante = MensalidadeIntegranteBll.RetornarMensalidadesIntegranteCalendario(integrante, calendario).ToList();
-
+                List<MensalidadeIntegrante> mensalidadesIntegrante = MensalidadeIntegranteBll.RetornarMensalidadesIntegranteCalendario(integranteID, calendarioID).ToList();
+                //Integrante integrante = IntegranteBll.RetornarIntegranteMensalidades(integranteID, calendarioID);
                 return PartialView(mensalidadesIntegrante);
             }
             catch (Exception exception)
@@ -89,6 +89,13 @@ namespace SaoBei.Controllers
                 LogBll.GravarErro(exception, User.Identity.Name);
                 return RedirectToAction("Index").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BaixarMensalidades([Bind(Include = "ID,Mes,DataPagamento")] IEnumerable<MensalidadeIntegrante> mensalidadesIntegrante)
+        {
+            return View();
         }
     }
 }

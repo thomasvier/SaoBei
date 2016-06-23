@@ -38,6 +38,8 @@ namespace SaoBei.Models
         [StringLength(20, MinimumLength = 6, ErrorMessage = "O campo Senha deve ter entre 6 a 20 caracterers")]
         public string Senha { get; set; }
 
+        public virtual List<MensalidadeIntegrante> Mensalidades { get; set; }
+
         public bool Ativo { get; set; }
     }
 }
