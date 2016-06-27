@@ -3,7 +3,7 @@ namespace SaoBei.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -59,6 +59,22 @@ namespace SaoBei.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.MensalidadeIntegrante",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Mes = c.Int(nullable: false),
+                        CalendarioID = c.Int(nullable: false),
+                        IntegranteID = c.Int(nullable: false),
+                        DataPagamento = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Calendario", t => t.CalendarioID, cascadeDelete: true)
+                .ForeignKey("dbo.Integrante", t => t.IntegranteID, cascadeDelete: true)
+                .Index(t => t.CalendarioID)
+                .Index(t => t.IntegranteID);
+            
+            CreateTable(
                 "dbo.Jogo",
                 c => new
                     {
@@ -103,52 +119,24 @@ namespace SaoBei.Migrations
                     })
                 .PrimaryKey(t => t.ID);
             
-            CreateTable(
-                "dbo.Mensalidades",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Janeiro = c.Boolean(nullable: false),
-                        Fevereiro = c.Boolean(nullable: false),
-                        Marco = c.Boolean(nullable: false),
-                        Abril = c.Boolean(nullable: false),
-                        Maio = c.Boolean(nullable: false),
-                        Junho = c.Boolean(nullable: false),
-                        Julho = c.Boolean(nullable: false),
-                        Agosto = c.Boolean(nullable: false),
-                        Setembro = c.Boolean(nullable: false),
-                        Outubro = c.Boolean(nullable: false),
-                        Novembro = c.Boolean(nullable: false),
-                        Dezembro = c.Boolean(nullable: false),
-                        Anuidade = c.Boolean(nullable: false),
-                        CalendarioID = c.Int(nullable: false),
-                        IntegrandeID = c.Int(nullable: false),
-                        Ativo = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Calendario", t => t.CalendarioID, cascadeDelete: true)
-                .ForeignKey("dbo.Integrante", t => t.IntegrandeID, cascadeDelete: true)
-                .Index(t => t.CalendarioID)
-                .Index(t => t.IntegrandeID);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Mensalidades", "IntegrandeID", "dbo.Integrante");
-            DropForeignKey("dbo.Mensalidades", "CalendarioID", "dbo.Calendario");
             DropForeignKey("dbo.Jogo", "LocalJogoID", "dbo.LocalJogo");
             DropForeignKey("dbo.Jogo", "CalendarioID", "dbo.Calendario");
             DropForeignKey("dbo.Jogo", "AdversarioID", "dbo.Adversario");
-            DropIndex("dbo.Mensalidades", new[] { "IntegrandeID" });
-            DropIndex("dbo.Mensalidades", new[] { "CalendarioID" });
+            DropForeignKey("dbo.MensalidadeIntegrante", "IntegranteID", "dbo.Integrante");
+            DropForeignKey("dbo.MensalidadeIntegrante", "CalendarioID", "dbo.Calendario");
             DropIndex("dbo.Jogo", new[] { "LocalJogoID" });
             DropIndex("dbo.Jogo", new[] { "CalendarioID" });
             DropIndex("dbo.Jogo", new[] { "AdversarioID" });
-            DropTable("dbo.Mensalidades");
+            DropIndex("dbo.MensalidadeIntegrante", new[] { "IntegranteID" });
+            DropIndex("dbo.MensalidadeIntegrante", new[] { "CalendarioID" });
             DropTable("dbo.Log");
             DropTable("dbo.LocalJogo");
             DropTable("dbo.Jogo");
+            DropTable("dbo.MensalidadeIntegrante");
             DropTable("dbo.Integrante");
             DropTable("dbo.Calendario");
             DropTable("dbo.Adversario");

@@ -289,84 +289,101 @@ namespace SaoBei.Negocio
             List<double> dados = new List<double>();
 
             Calendario calendario = CalendarioBll.RetornarCalendario(ano);
-            IQueryable<MensalidadeIntegrante> mensalidades = RetornarMensalidadesCalendario(calendario.ID);         
 
-            if (calendario != null && mensalidades.Count() > 0)
+            if (calendario != null)
             {
-                if (calendario.Janeiro)
-                {
-                    meses.Add("Janeiro");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 1).Count());
-                }
+                IQueryable<MensalidadeIntegrante> mensalidades = RetornarMensalidadesCalendario(calendario.ID);
 
-                if (calendario.Fevereiro)
+                if (mensalidades.Count() > 0)
                 {
-                    meses.Add("Fevereiro");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 2).Count());
-                }
+                    if (calendario.Janeiro)
+                    {
+                        meses.Add("Janeiro");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 1).Count());
+                    }
 
-                if (calendario.Marco)
-                {
-                    meses.Add("Março");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 3).Count());
-                }
+                    if (calendario.Fevereiro)
+                    {
+                        meses.Add("Fevereiro");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 2).Count());
+                    }
 
-                if (calendario.Abril)
-                {
-                    meses.Add("Abril");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 4).Count());
-                }
+                    if (calendario.Marco)
+                    {
+                        meses.Add("Março");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 3).Count());
+                    }
 
-                if (calendario.Maio)
-                {
-                    meses.Add("Maio");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 5).Count());
-                }
+                    if (calendario.Abril)
+                    {
+                        meses.Add("Abril");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 4).Count());
+                    }
 
-                if (calendario.Junho)
-                {
-                    meses.Add("Junho");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 6).Count());
-                }
+                    if (calendario.Maio)
+                    {
+                        meses.Add("Maio");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 5).Count());
+                    }
 
-                if (calendario.Julho)
-                {
-                    meses.Add("Julho");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 7).Count());
-                }
+                    if (calendario.Junho)
+                    {
+                        meses.Add("Junho");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 6).Count());
+                    }
 
-                if (calendario.Agosto)
-                {
-                    meses.Add("Agosto");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 8).Count());
-                }
+                    if (calendario.Julho)
+                    {
+                        meses.Add("Julho");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 7).Count());
+                    }
 
-                if (calendario.Setembro)
-                {
-                    meses.Add("Setembro");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 9).Count());
-                }
+                    if (calendario.Agosto)
+                    {
+                        meses.Add("Agosto");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 8).Count());
+                    }
 
-                if (calendario.Outubro)
-                {
-                    meses.Add("Outubro");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 10).Count());
-                }                
+                    if (calendario.Setembro)
+                    {
+                        meses.Add("Setembro");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 9).Count());
+                    }
 
-                if (calendario.Novembro)
-                {
-                    meses.Add("Novembro");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 11).Count());
-                }
+                    if (calendario.Outubro)
+                    {
+                        meses.Add("Outubro");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 10).Count());
+                    }
 
-                if (calendario.Dezembro)
-                {
-                    meses.Add("Dezembro");
-                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 12).Count());
+                    if (calendario.Novembro)
+                    {
+                        meses.Add("Novembro");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 11).Count());
+                    }
+
+                    if (calendario.Dezembro)
+                    {
+                        meses.Add("Dezembro");
+                        dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 12).Count());
+                    }
                 }
             }
-            else
+
+            if (dados.Count == 0 && meses.Count == 0)
             {
+                meses.Add("Janeiro");
+                meses.Add("Fevereiro");
+                meses.Add("Março");
+                meses.Add("Abril");
+                meses.Add("Maio");
+                meses.Add("Junho");
+                meses.Add("Julho");
+                meses.Add("Agosto");
+                meses.Add("Setembro");
+                meses.Add("Outubro");
+                meses.Add("Novembro");
+                meses.Add("Dezembro");
                 dados.Add(0);
                 dados.Add(0);
                 dados.Add(0);
@@ -376,6 +393,7 @@ namespace SaoBei.Negocio
                 dados.Add(0);
                 dados.Add(0);
             }
+
 
             List<ComplexDataset> complexDataSets = new List<ComplexDataset>();
 

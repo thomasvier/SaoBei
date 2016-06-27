@@ -140,37 +140,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606161138548_initial.cs" />
-    <Compile Include="Migrations\201606161138548_initial.Designer.cs">
-      <DependentUpon>201606161138548_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606192122458_mensalidades.cs" />
-    <Compile Include="Migrations\201606192122458_mensalidades.Designer.cs">
-      <DependentUpon>201606192122458_mensalidades.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606221856321_mensalidades1.cs" />
-    <Compile Include="Migrations\201606221856321_mensalidades1.Designer.cs">
-      <DependentUpon>201606221856321_mensalidades1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606221907306_datapagamentomensalidade.cs" />
-    <Compile Include="Migrations\201606221907306_datapagamentomensalidade.Designer.cs">
-      <DependentUpon>201606221907306_datapagamentomensalidade.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606222328361_integrantesmen.cs" />
-    <Compile Include="Migrations\201606222328361_integrantesmen.Designer.cs">
-      <DependentUpon>201606222328361_integrantesmen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606231850185_datapagamento.cs" />
-    <Compile Include="Migrations\201606231850185_datapagamento.Designer.cs">
-      <DependentUpon>201606231850185_datapagamento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606261829280_dataca.cs" />
-    <Compile Include="Migrations\201606261829280_dataca.Designer.cs">
-      <DependentUpon>201606261829280_dataca.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606262053343_datavolt.cs" />
-    <Compile Include="Migrations\201606262053343_datavolt.Designer.cs">
-      <DependentUpon>201606262053343_datavolt.cs</DependentUpon>
+    <Compile Include="Migrations\201606270122159_InitialMigration.cs" />
+    <Compile Include="Migrations\201606270122159_InitialMigration.Designer.cs">
+      <DependentUpon>201606270122159_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
@@ -446,29 +418,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606161138548_initial.resx">
-      <DependentUpon>201606161138548_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606192122458_mensalidades.resx">
-      <DependentUpon>201606192122458_mensalidades.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606221856321_mensalidades1.resx">
-      <DependentUpon>201606221856321_mensalidades1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606221907306_datapagamentomensalidade.resx">
-      <DependentUpon>201606221907306_datapagamentomensalidade.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606222328361_integrantesmen.resx">
-      <DependentUpon>201606222328361_integrantesmen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606231850185_datapagamento.resx">
-      <DependentUpon>201606231850185_datapagamento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606261829280_dataca.resx">
-      <DependentUpon>201606261829280_dataca.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606262053343_datavolt.resx">
-      <DependentUpon>201606262053343_datavolt.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606270122159_InitialMigration.resx">
+      <DependentUpon>201606270122159_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>

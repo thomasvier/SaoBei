@@ -22,21 +22,27 @@ namespace SaoBei.Controllers
                 IEnumerable<string> Labels;
                 IEnumerable<ComplexDataset> Datasets;
                 List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
+                int ano = 0;
 
                 ViewBag.Calendarios = calendarios;
 
                 MensalidadeIntegrante mensalidade = new MensalidadeIntegrante();
 
-                if (calendarioId > 0)
+                if (calendarios.Count > 0)
                 {
-                    mensalidade.CalendarioID = (int)calendarioId;                    
-                }
-                else
-                {
-                    mensalidade.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;                    
+                    if (calendarioId > 0)
+                    {
+                        mensalidade.CalendarioID = (int)calendarioId;
+                    }
+                    else
+                    {
+                        mensalidade.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
+                    }
+
+                    ano = calendarios.FirstOrDefault(c => c.ID == mensalidade.CalendarioID).Ano;
                 }
 
-                MensalidadeIntegranteBll.GraficoMensalidadeIntegrante(calendarios.FirstOrDefault(c => c.ID == mensalidade.CalendarioID).Ano, out Labels, out Datasets);
+                MensalidadeIntegranteBll.GraficoMensalidadeIntegrante(ano, out Labels, out Datasets);
 
                 ViewBag.Labels = Labels;
                 ViewBag.Datasets = Datasets;                

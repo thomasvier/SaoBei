@@ -7,13 +7,13 @@ namespace SaoBei.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class mensalidades : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mensalidades));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606192122458_mensalidades"; }
+            get { return "201606270122159_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

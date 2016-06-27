@@ -19,7 +19,7 @@ namespace SaoBei.Controllers
 
         public ActionResult LogOn()
         {
-            if (this.HttpContext.User.Identity != null && User.Identity.IsAuthenticated)
+            if (HttpContext.User.Identity != null && User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home").ComMensagem("Você não tem permissão para acesso.", TipoMensagem.Info);
             }

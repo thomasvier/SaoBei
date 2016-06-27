@@ -4,6 +4,7 @@ namespace SaoBei.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using SaoBei.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<SaoBei.Models.Contexto>
     {
@@ -15,18 +16,22 @@ namespace SaoBei.Migrations
 
         protected override void Seed(SaoBei.Models.Contexto context)
         {
-            //  This method will be called after migrating to the latest version.
+            Integrante integrante = new Integrante {
+                Ativo = true,
+                DataNascimento = DateTime.Now,
+                Email = "adm@saobei.com.br",
+                Nome = "Administrador",
+                Senha = "admsaobei",
+                TipoIntegrante = TipoIntegrante.Diretoria
+            };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Integrantes.AddOrUpdate(integrante);
+            context.SaveChanges();
+
+            Calendario calendario = new Calendario();
+
+            context.Calendarios.AddOrUpdate(calendario);
+            context.SaveChanges();
         }
     }
 }

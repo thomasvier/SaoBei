@@ -91,8 +91,12 @@ namespace SaoBei.Controllers
                 if (id == null)
                 {
                     jogo = new Jogo();
-                    Calendario calendario = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault();
-                    jogo.CalendarioID = calendario.ID;
+
+                    if (calendarios.Count > 0)
+                    {
+                        Calendario calendario = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault();
+                        jogo.CalendarioID = calendario.ID;
+                    }
                 }
                 else
                 {

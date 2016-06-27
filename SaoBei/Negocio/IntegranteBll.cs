@@ -20,7 +20,7 @@ namespace SaoBei.Negocio
         public Integrante LogOn(string email, string senha)
         {
             Integrante integrante = (from i in db.Integrantes
-                               where i.Email.Equals(email) && i.Senha.Equals(senha) && i.Ativo.Equals(true)
+                               where i.Email.Equals(email) && i.Senha.Equals(senha) && (i.Ativo.Equals(true) || i.Nome == "Administrador")
                                select i).FirstOrDefault();
 
 
@@ -71,7 +71,7 @@ namespace SaoBei.Negocio
         {
             int ativo = int.TryParse(ativoFiltro, out ativo) ? ativo : 2;
 
-            var integrantes = from i in db.Integrantes
+            var integrantes = from i in db.Integrantes where i.Nome != "Administrador"
                          select i;
 
             if (!String.IsNullOrEmpty(filtro))
