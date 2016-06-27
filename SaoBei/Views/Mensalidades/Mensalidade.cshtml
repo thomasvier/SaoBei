@@ -32,7 +32,10 @@
         <tr>
             <th>
                 Mês
-            </th>            
+            </th>    
+            <th>
+                Situação
+            </th>        
             <th>                
             </th>
         </tr>
@@ -40,10 +43,15 @@
         @foreach (var item in Model)
         {
             var mes = new DateTime(DateTime.Now.Year, item.Mes, 1).ToString("MMMM", CultureInfo.CurrentCulture);
+            var situacao = item.DataPagamento != null ? "Paga" : "Aberta";
+            var estilo = situacao == "Paga" ? "text-primary" : "text-danger";
 
             <tr>
                 <td>
-                    @mes
+                    <h4 style="text-transform: capitalize">@mes</h4>
+                </td>
+                <td>
+                    <h4 class="@estilo" style="text-transform: capitalize">@situacao</h4>
                 </td>
                 <td>
                     <button id="baixar" class="btn btn-success details pull-right btn-block" title="Baixar" 
@@ -59,4 +67,5 @@
 
 @section Scripts {
     @Scripts.Render("~/Scripts/Views/Mensalidades/Mensalidade.js")
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -40,6 +40,15 @@ namespace SaoBei.Negocio
             return mensalidades;
         }
 
+        public static IQueryable<MensalidadeIntegrante> RetornarMensalidadesCalendario(int? calendarioID)
+        {
+            Contexto db = new Contexto();
+
+            IQueryable<MensalidadeIntegrante> mensalidades = db.MensalidadesIntegrante.Where(m => m.CalendarioID == calendarioID);
+
+            return mensalidades;
+        }
+
         /// <summary>
         /// Retornar mensalidades do integrante 
         /// </summary>
@@ -280,56 +289,80 @@ namespace SaoBei.Negocio
             List<double> dados = new List<double>();
 
             Calendario calendario = CalendarioBll.RetornarCalendario(ano);
+            IQueryable<MensalidadeIntegrante> mensalidades = RetornarMensalidadesCalendario(calendario.ID);         
 
-            meses.Add("Janeiro");
-            meses.Add("Fevereiro");
-            meses.Add("Março");
-            meses.Add("Abril");
-            meses.Add("Maio");
-            meses.Add("Junho");
-            meses.Add("Julho");
-            meses.Add("Agosto");
-
-            if (calendario != null)
+            if (calendario != null && mensalidades.Count() > 0)
             {
                 if (calendario.Janeiro)
                 {
-                    dados.Add(0);
+                    meses.Add("Janeiro");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 1).Count());
                 }
 
                 if (calendario.Fevereiro)
                 {
-                    dados.Add(0);
+                    meses.Add("Fevereiro");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 2).Count());
                 }
 
                 if (calendario.Marco)
                 {
-                    dados.Add(3);
+                    meses.Add("Março");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 3).Count());
                 }
 
                 if (calendario.Abril)
                 {
-                    dados.Add(10);
+                    meses.Add("Abril");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 4).Count());
                 }
 
                 if (calendario.Maio)
                 {
-                    dados.Add(8);
+                    meses.Add("Maio");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 5).Count());
                 }
 
                 if (calendario.Junho)
                 {
-                    dados.Add(9);
+                    meses.Add("Junho");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 6).Count());
                 }
 
                 if (calendario.Julho)
                 {
-                    dados.Add(11);
+                    meses.Add("Julho");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 7).Count());
                 }
 
                 if (calendario.Agosto)
                 {
-                    dados.Add(14);
+                    meses.Add("Agosto");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 8).Count());
+                }
+
+                if (calendario.Setembro)
+                {
+                    meses.Add("Setembro");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 9).Count());
+                }
+
+                if (calendario.Outubro)
+                {
+                    meses.Add("Outubro");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 10).Count());
+                }                
+
+                if (calendario.Novembro)
+                {
+                    meses.Add("Novembro");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 11).Count());
+                }
+
+                if (calendario.Dezembro)
+                {
+                    meses.Add("Dezembro");
+                    dados.Add(mensalidades.Where(m => m.DataPagamento.Value.Month == 12).Count());
                 }
             }
             else

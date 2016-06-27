@@ -22,22 +22,24 @@ namespace SaoBei.Controllers
                 IEnumerable<string> Labels;
                 IEnumerable<ComplexDataset> Datasets;
                 List<Calendario> calendarios = CalendarioBll.ListarCalendarios().ToList();
-                MensalidadeIntegranteBll.GraficoMensalidadeIntegrante(DateTime.Now.Year, out Labels, out Datasets);
 
-                ViewBag.Labels = Labels;
-                ViewBag.Datasets = Datasets;
                 ViewBag.Calendarios = calendarios;
 
                 MensalidadeIntegrante mensalidade = new MensalidadeIntegrante();
 
                 if (calendarioId > 0)
                 {
-                    mensalidade.CalendarioID = (int)calendarioId;
+                    mensalidade.CalendarioID = (int)calendarioId;                    
                 }
                 else
                 {
-                    mensalidade.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;
+                    mensalidade.CalendarioID = calendarios.Where(c => c.Ano == DateTime.Now.Year).FirstOrDefault().ID;                    
                 }
+
+                MensalidadeIntegranteBll.GraficoMensalidadeIntegrante(calendarios.FirstOrDefault(c => c.ID == mensalidade.CalendarioID).Ano, out Labels, out Datasets);
+
+                ViewBag.Labels = Labels;
+                ViewBag.Datasets = Datasets;                
 
                 return View(mensalidade);
             }
@@ -63,7 +65,7 @@ namespace SaoBei.Controllers
 
                 if (calendarios.Count > 0 && IntegranteID > 0)
                 {
-                    mensalidades = MensalidadeIntegranteBll.RetornarMensalidadesIntegranteCalendario(IntegranteID, CalendarioID).ToList();
+                    mensalidades = MensalidadeIntegranteBll.RetornarMensalidadesSeremBaixadas(IntegranteID, CalendarioID).ToList();
                 }
 
                 return View(mensalidades);
@@ -102,12 +104,15 @@ namespace SaoBei.Controllers
 
                 mensalidadeIntegranteBll.Atualizar(mensalidadeIntegrante);
 
-                return RedirectToAction("Mensalidade", "Mensalidades");
+                LogBll.GravarInformacao(string.Format(Resources.Mensalidades.SalvaLog, mensalidadeIntegrante.ID), string.Empty, User.Identity.Name);
+                return RedirectToAction("Mensalidade", "Mensalidades",
+                    new { CalendarioID = mensalidadeIntegrante.CalendarioID, IntegranteID = mensalidadeIntegrante.IntegranteID })
+                    .ComMensagem(Resources.Mensalidades.MensalidadeSalva, TipoMensagem.Sucesso);
             }
             catch(Exception exception)
             {
                 LogBll.GravarErro(exception, User.Identity.Name);
-                return RedirectToAction("Mensalidade", "Mensalidades");
+                return RedirectToAction("Index", "Mensalidades").ComMensagem(Resources.Geral.ContateAdministrador, TipoMensagem.Erro);
             }
         }
     }

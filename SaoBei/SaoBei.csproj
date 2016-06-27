@@ -164,6 +164,14 @@
     <Compile Include="Migrations\201606231850185_datapagamento.Designer.cs">
       <DependentUpon>201606231850185_datapagamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606261829280_dataca.cs" />
+    <Compile Include="Migrations\201606261829280_dataca.Designer.cs">
+      <DependentUpon>201606261829280_dataca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606262053343_datavolt.cs" />
+    <Compile Include="Migrations\201606262053343_datavolt.Designer.cs">
+      <DependentUpon>201606262053343_datavolt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActionResultExtensions.cs" />
     <Compile Include="Models\Adversario.cs" />
@@ -218,6 +226,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalJogo.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Mensalidades.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mensalidades.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +464,12 @@
     <EmbeddedResource Include="Migrations\201606231850185_datapagamento.resx">
       <DependentUpon>201606231850185_datapagamento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606261829280_dataca.resx">
+      <DependentUpon>201606261829280_dataca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606262053343_datavolt.resx">
+      <DependentUpon>201606262053343_datavolt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Adversario.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Adversario.Designer.cs</LastGenOutput>
@@ -474,6 +493,10 @@
     <EmbeddedResource Include="Resources\LocalJogo.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalJogo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Mensalidades.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Mensalidades.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

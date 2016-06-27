@@ -8,6 +8,8 @@
     complexChart.ComplexData.Datasets.AddRange(ViewBag.Datasets as IEnumerable<ComplexDataset>);
 }
 
-<canvas id="@Canvas"></canvas>
+<div style="overflow-x: auto">
+    <canvas id="@Canvas"></canvas>
 
-@Html.CreateChart(Canvas, complexChart)
+    @Html.CreateChart(Canvas, complexChart)
+</div>
